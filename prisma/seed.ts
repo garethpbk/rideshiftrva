@@ -13,51 +13,41 @@ async function main() {
 
   const rewards = [
     {
-      title: "Free drip coffee with any pastry",
+      title: "50% off your first recording sessions",
       description:
-        "Show your Ride Shift confirmation to get a free drip coffee when you buy any pastry. Valid at all Richmond locations.",
-      businessName: "Lamplighter Coffee",
-      couponCode: "RIDESHIFT-LAMP",
+        "Get 50% off your first recording session at West Broad Studios. Mention RideShift RVA when you book.",
+      businessName: "West Broad Studios",
+      couponCode: "RIDESHIFT-WBS50",
       validFrom,
       validTo,
       active: true,
     },
     {
-      title: "10% off bike tune-up",
+      title: "10% off",
       description:
-        "Get 10% off any bike tune-up or repair service. Just mention Ride Shift RVA when you drop off your bike.",
-      businessName: "Carytown Bicycle Co.",
-      couponCode: "RIDESHIFT-BIKE10",
+        "10% off your purchase at Rushing Blooms. Show your RideShift confirmation at checkout.",
+      businessName: "Rushing Blooms",
+      couponCode: "RIDESHIFT-BLOOMS10",
       validFrom,
       validTo,
       active: true,
     },
     {
-      title: "$5 off brunch",
+      title: "10% off",
       description:
-        "$5 off any brunch entree, Saturday or Sunday. Cannot be combined with other offers.",
-      businessName: "Can Can Brasserie",
-      couponCode: "RIDESHIFT-BRUNCH5",
+        "10% off your purchase at Moulton Hot Natives. Show your RideShift confirmation at checkout.",
+      businessName: "Moulton Hot Natives",
+      couponCode: "RIDESHIFT-MOULTON10",
       validFrom,
       validTo,
       active: true,
     },
     {
-      title: "Free skate rental",
+      title: "$50 gift card raffle",
       description:
-        "One free skate rental session (up to 2 hours). Show your confirmation at the front desk.",
-      businessName: "River City Roll",
-      couponCode: "RIDESHIFT-SKATE",
-      validFrom,
-      validTo,
-      active: true,
-    },
-    {
-      title: "Buy one get one free gelato",
-      description:
-        "Buy any size gelato and get one free. Valid at the Carytown location.",
-      businessName: "Gelati Celesti",
-      couponCode: "RIDESHIFT-BOGO",
+        "You're entered in a raffle for a $100 gift card. Winners drawn weekly.",
+      businessName: "$50 gift card raffle",
+      couponCode: null,
       validFrom,
       validTo,
       active: true,

@@ -1,7 +1,7 @@
 # Update Meta Tags & Branding from Next.js Defaults
 
 ## Context
-The app was scaffolded from Create Next App and still has default boilerplate assets (next.svg, vercel.svg, etc.) in `public/`, a hackathon project name in `package.json`, and minimal metadata in the layout. We need proper branding, social sharing tags, and SEO basics for "Ride Shift RVA".
+The app was scaffolded from Create Next App and still has default boilerplate assets (next.svg, vercel.svg, etc.) in `public/`, a hackathon project name in `package.json`, and minimal metadata in the layout. We need proper branding, social sharing tags, and SEO basics for "RideShift RVA".
 
 ## Changes
 
@@ -14,7 +14,7 @@ Remove unused default SVGs (confirmed unreferenced in code):
 
 ### 3. Expand metadata in `src/app/layout.tsx`
 - Add `metadataBase` (using `NEXTAUTH_URL` env var)
-- Convert `title` to template format: `{ default: "Ride Shift RVA", template: "%s | Ride Shift RVA" }`
+- Convert `title` to template format: `{ default: "RideShift RVA", template: "%s | RideShift RVA" }`
 - Add `applicationName`, `openGraph`, `twitter`, `robots` fields
 - Add separate `export const viewport: Viewport` with `themeColor: "#16a34a"` (green-600 brand color) — required as separate export per Next.js 14+ API
 
@@ -66,8 +66,8 @@ Note: `src/app/auth/signin/page.tsx` is a client component (`"use client"`) so i
 ## Verification
 1. Run `npm run build` to ensure no type errors
 2. Run `npm run dev` and check:
-   - Browser tab shows "Ride Shift RVA" title and custom favicon
-   - Navigate to `/auth/verify` — tab shows "Check Your Email | Ride Shift RVA"
+   - Browser tab shows "RideShift RVA" title and custom favicon
+   - Navigate to `/auth/verify` — tab shows "Check Your Email | RideShift RVA"
    - View page source — OG and Twitter meta tags present
    - Visit `/manifest.webmanifest` — returns valid JSON
    - Visit `/robots.txt` — shows expected rules

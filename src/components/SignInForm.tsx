@@ -14,13 +14,13 @@ function SignInFormInner() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    await signIn("nodemailer", { email, callbackUrl: "/" });
+    await signIn("nodemailer", { email, callbackUrl: "/dashboard" });
   }
 
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="flex flex-col gap-1 pb-0">
-        <h1 className="text-2xl font-bold text-green-600">Ride Shift RVA</h1>
+        <h1 className="text-2xl font-bold text-green-600">RideShift RVA</h1>
         <p className="text-sm text-zinc-500">Sign in with your email</p>
       </CardHeader>
       <CardContent>

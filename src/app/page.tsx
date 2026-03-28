@@ -1,47 +1,20 @@
-import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getCurrentWeekKey, getWeekDateRange, getModeLabel } from "@/lib/weeks";
-import { RewardGrid } from "@/components/RewardGrid";
-import { CheckInHistory } from "@/components/CheckInHistory";
-import { GoalForm } from "@/components/GoalForm";
-import { Card, CardContent, Chip, Button } from "@heroui/react";
+import { Card, CardContent, Button } from "@heroui/react";
 import Link from "next/link";
 
-const PARTICIPATING_BUSINESSES = [
-  {
-    name: "Rushing Blooms",
-    logo: "/rushing-blooms-logo.jpg",
-    website: "https://rushingblooms.com/",
-  },
-  {
-    name: "Moulton Hot Natives",
-    logo: "/mhn-logo.webp",
-    website: "https://moultonhotnatives.square.site/",
-  },
-  {
-    name: "West Broad Studios",
-    logo: "/wbstudios-logo.png",
-    website: "https://westbroadstudios.com/",
-  },
-  {
-    name: "Tito's Taqueria",
-    logo: "/titos-logo.png",
-    website: "https://titostaqueriabarvirginia.com/",
-  },
-  {
-    name: "Common House",
-    logo: "/ch-logo.webp",
-    website: "https://www.commonhouse.com/",
-  },
-];
+interface Business {
+  name: string;
+  logo: string | null;
+  url: string | null;
+}
 
-function LandingPage() {
+function LandingPage({ businesses }: { businesses: Business[] }) {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero */}
       <section className="flex flex-col items-center justify-center gap-6 px-4 py-24 text-center">
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-          Move Richmond. <span className="text-green-600">Get Rewarded.</span>
+          Move Green. <span className="text-green-600">Save Green.</span>
         </h1>
         <p className="max-w-xl text-xl text-zinc-600">
           Mix your commute. Unlock local deals.
@@ -101,10 +74,8 @@ function LandingPage() {
           <p className="mt-4 text-lg text-zinc-600">
             RideShift makes multimodal transit worth it. Set a weekly goal,
             confirm you met it, and redeem real deals at local businesses
-            enrolled in the program. Simple.
-          </p>
-          <p className="mt-4 text-xl font-semibold text-green-600">
-            Move Green. Save Green.
+            enrolled in the program — lower emissions and real savings at
+            participating spots. Simple.
           </p>
         </div>
       </section>
@@ -181,22 +152,42 @@ function LandingPage() {
             Local businesses already on board
           </p>
           <div className="mt-8 flex flex-wrap justify-center items-center gap-8 sm:gap-12">
-            {PARTICIPATING_BUSINESSES.map((biz) => (
-              <a
-                key={biz.name}
-                href={biz.website}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-20 w-32 items-center justify-center transition-opacity hover:opacity-80"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={biz.logo}
-                  alt={biz.name}
-                  className="max-h-full max-w-full rounded-lg object-contain"
-                />
-              </a>
-            ))}
+            {businesses.map((biz) => {
+              const inner = biz.logo ? (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={biz.logo}
+                    alt={biz.name}
+                    className="max-h-full max-w-full rounded-lg object-contain"
+                  />
+                </>
+              ) : (
+                <p className="text-lg font-semibold">{biz.name}</p>
+              );
+
+              return biz.url ? (
+                <a
+                  key={biz.name}
+                  href={biz.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-20 w-32 items-center justify-center transition-opacity hover:opacity-80"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div
+                  key={biz.name}
+                  className="flex h-20 w-32 items-center justify-center"
+                >
+                  {inner}
+                </div>
+              );
+            })}
+            {businesses.length === 0 && (
+              <p className="text-zinc-400">Coming soon!</p>
+            )}
           </div>
         </div>
       </section>
@@ -204,122 +195,33 @@ function LandingPage() {
   );
 }
 
+const BUSINESS_INFO: Record<string, { url?: string; logo?: string }> = {
+  "Moulton Hot Natives": {
+    url: "https://moultonhotnatives.square.site/",
+    logo: "/mhn-logo.webp",
+  },
+  "Rushing Blooms": {
+    url: "https://rushingblooms.com/",
+    logo: "/rushing-blooms-logo.jpg",
+  },
+  "West Broad Studios": {
+    url: "https://westbroadstudios.com/",
+    logo: "/wbstudios-logo.png",
+  },
+};
+
 export default async function HomePage() {
-  const session = await auth();
-  if (!session?.user?.id) return <LandingPage />;
-
-  const [goal, currentCheckIn, recentCheckIns] = await Promise.all([
-    prisma.goal.findUnique({ where: { userId: session.user.id } }),
-    prisma.weeklyCheckIn.findUnique({
-      where: {
-        userId_weekKey: {
-          userId: session.user.id,
-          weekKey: getCurrentWeekKey(),
-        },
-      },
-    }),
-    prisma.weeklyCheckIn.findMany({
-      where: { userId: session.user.id },
-      orderBy: { weekKey: "desc" },
-      take: 10,
-    }),
-  ]);
-
-  if (!goal) {
-    return (
-      <div className="flex min-h-screen items-center justify-center p-4">
-        <GoalForm />
-      </div>
-    );
-  }
-
-  const weekKey = getCurrentWeekKey();
-  const { monday, sunday } = getWeekDateRange(weekKey);
-
   const rewards = await prisma.reward.findMany({
-    where: {
-      active: true,
-      validFrom: { lte: sunday },
-      validTo: { gte: monday },
-    },
-    include: { _count: { select: { redemptions: true } } },
+    where: { active: true },
+    select: { businessName: true },
+    distinct: ["businessName"],
   });
 
-  const userRedemptions = await prisma.redemption.findMany({
-    where: { userId: session.user.id, weekKey },
-  });
-  const redeemedRewardIds = new Set(userRedemptions.map((r) => r.rewardId));
+  const businesses: Business[] = rewards.map((r) => ({
+    name: r.businessName,
+    logo: BUSINESS_INFO[r.businessName]?.logo ?? null,
+    url: BUSINESS_INFO[r.businessName]?.url || null,
+  }));
 
-  const responded = currentCheckIn?.response != null;
-
-  return (
-    <div className="mx-auto max-w-3xl p-4 py-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-green-600">Dashboard</h1>
-        <p className="text-sm text-zinc-500">{session.user.email}</p>
-      </div>
-
-      <Card className="mb-6">
-        <CardContent>
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-zinc-500">Your weekly goals</p>
-              <div className="mt-1 flex flex-wrap gap-2">
-                {goal.items.map((item) => (
-                  <span key={item.mode} className="text-lg font-semibold">
-                    {getModeLabel(item.mode)} {item.daysPerWeek}x/week
-                  </span>
-                ))}
-              </div>
-            </div>
-            {responded ? (
-              <Chip className="bg-green-100 text-green-700">
-                {currentCheckIn?.response === "yes"
-                  ? "Confirmed!"
-                  : "Responded"}
-              </Chip>
-            ) : (
-              <Chip className="bg-amber-100 text-amber-700">
-                Check-in arrives Sunday
-              </Chip>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-
-      <div className="mb-6">
-        <h2 className="mb-3 text-xl font-semibold">
-          This Week&apos;s Rewards
-          {rewards.length > 0 && (
-            <span className="ml-2 text-sm font-normal text-zinc-500">
-              {rewards.length} from local businesses
-            </span>
-          )}
-        </h2>
-        <RewardGrid
-          rewards={rewards.map((r) => ({
-            id: r.id,
-            title: r.title,
-            description: r.description,
-            businessName: r.businessName,
-            businessLogo: r.businessLogo,
-            couponCode: r.couponCode,
-            maxRedemptions: r.maxRedemptions,
-            totalRedemptions: r._count.redemptions,
-          }))}
-          confirmed={responded}
-          redeemedRewardIds={redeemedRewardIds}
-        />
-      </div>
-
-      <CheckInHistory
-        checkIns={recentCheckIns.map((ci) => ({
-          weekKey: ci.weekKey,
-          goalSnapshot: ci.goalSnapshot,
-          response: ci.response,
-          respondedAt: ci.respondedAt,
-        }))}
-      />
-    </div>
-  );
+  return <LandingPage businesses={businesses} />;
 }

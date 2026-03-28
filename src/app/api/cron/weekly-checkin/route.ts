@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
         subject: "Did you meet your weekly travel sustainability goals?",
         html: `
           <div style="max-width: 480px; margin: 0 auto; font-family: sans-serif;">
-            <h2 style="color: #16a34a;">Ride Shift RVA</h2>
+            <h2 style="color: #16a34a;">RideShift RVA</h2>
             <p>Hey${user.name ? ` ${user.name}` : ""}!</p>
             <p>Did you meet your sustainable travel goals this week?</p>
             <p>Your weekly goals were:</p>

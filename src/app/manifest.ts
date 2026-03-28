@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Ride Shift RVA",
+    name: "RideShift RVA",
     short_name: "RideShift",
     description:
       "Move green, save green. Earn local rewards for car-free commuting in Richmond, VA.",
