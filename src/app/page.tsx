@@ -2,14 +2,19 @@ import { prisma } from "@/lib/prisma";
 import { Card, CardContent, Button } from "@heroui/react";
 import Link from "next/link";
 
-function LandingPage({ businesses }: { businesses: string[] }) {
+interface Business {
+  name: string;
+  logo: string | null;
+  url: string | null;
+}
+
+function LandingPage({ businesses }: { businesses: Business[] }) {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero */}
       <section className="flex flex-col items-center justify-center gap-6 px-4 py-24 text-center">
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-          Move Green.{" "}
-          <span className="text-green-600">Save Green.</span>
+          Move Green. <span className="text-green-600">Save Green.</span>
         </h1>
         <p className="max-w-xl text-xl text-zinc-600">
           Mix your commute. Unlock local deals.
@@ -85,8 +90,8 @@ function LandingPage({ businesses }: { businesses: string[] }) {
                 <p className="text-4xl font-bold text-green-600">1</p>
                 <h3 className="mt-2 text-lg font-semibold">Move</h3>
                 <p className="text-sm text-zinc-500">
-                  Take the bus, bike, scooter, walk, or combine modes — then set your
-                  weekly goal in the app
+                  Take the bus, bike, scooter, walk, or combine modes — then set
+                  your weekly goal in the app
                 </p>
               </CardContent>
             </Card>
@@ -95,8 +100,8 @@ function LandingPage({ businesses }: { businesses: string[] }) {
                 <p className="text-4xl font-bold text-green-600">2</p>
                 <h3 className="mt-2 text-lg font-semibold">Confirm</h3>
                 <p className="text-sm text-zinc-500">
-                  Get a Sunday check-in email and confirm you met your goal
-                  with one click
+                  Get a Sunday check-in email and confirm you met your goal with
+                  one click
                 </p>
               </CardContent>
             </Card>
@@ -131,8 +136,8 @@ function LandingPage({ businesses }: { businesses: string[] }) {
               <h3 className="text-xl font-bold">For Local Businesses</h3>
               <p className="mt-2 text-zinc-600">
                 Turn Richmond commuters into your regulars. List a weekly deal,
-                attract foot traffic, and show your community you&apos;re invested
-                in a cleaner, smarter city.
+                attract foot traffic, and show your community you&apos;re
+                invested in a cleaner, smarter city.
               </p>
             </CardContent>
           </Card>
@@ -146,22 +151,64 @@ function LandingPage({ businesses }: { businesses: string[] }) {
           <p className="mt-2 text-zinc-500">
             Local businesses already on board
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-8">
-            {businesses.map((name) => (
-              <div key={name} className="text-center">
-                <p className="text-lg font-semibold">{name}</p>
-              </div>
-            ))}
+          <div className="mt-8 flex flex-wrap justify-center items-center gap-8 sm:gap-12">
+            {businesses.map((biz) => {
+              const inner = biz.logo ? (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={biz.logo}
+                    alt={biz.name}
+                    className="max-h-full max-w-full rounded-lg object-contain"
+                  />
+                </>
+              ) : (
+                <p className="text-lg font-semibold">{biz.name}</p>
+              );
+
+              return biz.url ? (
+                <a
+                  key={biz.name}
+                  href={biz.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-20 w-32 items-center justify-center transition-opacity hover:opacity-80"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div
+                  key={biz.name}
+                  className="flex h-20 w-32 items-center justify-center"
+                >
+                  {inner}
+                </div>
+              );
+            })}
             {businesses.length === 0 && (
               <p className="text-zinc-400">Coming soon!</p>
             )}
           </div>
         </div>
       </section>
-
     </div>
   );
 }
+
+const BUSINESS_INFO: Record<string, { url?: string; logo?: string }> = {
+  "Moulton Hot Natives": {
+    url: "https://moultonhotnatives.square.site/",
+    logo: "/mhn-logo.webp",
+  },
+  "Rushing Blooms": {
+    url: "https://rushingblooms.com/",
+    logo: "/rushing-blooms-logo.jpg",
+  },
+  "West Broad Studios": {
+    url: "https://westbroadstudios.com/",
+    logo: "/wbstudios-logo.png",
+  },
+};
 
 export default async function HomePage() {
   const rewards = await prisma.reward.findMany({
@@ -169,7 +216,12 @@ export default async function HomePage() {
     select: { businessName: true },
     distinct: ["businessName"],
   });
-  const businesses = rewards.map((r) => r.businessName);
+
+  const businesses: Business[] = rewards.map((r) => ({
+    name: r.businessName,
+    logo: BUSINESS_INFO[r.businessName]?.logo ?? null,
+    url: BUSINESS_INFO[r.businessName]?.url || null,
+  }));
 
   return <LandingPage businesses={businesses} />;
 }
