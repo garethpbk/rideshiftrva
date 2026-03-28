@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import { Card, CardHeader, CardContent } from "@heroui/react";
+
+export const metadata: Metadata = {
+  title: "Check Your Email",
+};
 
 export default function VerifyPage() {
   return (

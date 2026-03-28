@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Card, CardHeader, CardContent } from "@heroui/react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Confirm Check-In",
+};
 
 interface Props {
   searchParams: Promise<{ token?: string }>;
