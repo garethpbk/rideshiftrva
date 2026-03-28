@@ -30,8 +30,8 @@ export async function upsertGoal(formData: FormData) {
     create: { userId: session.user.id, items },
   });
 
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
 }
 
 export async function clearGoal() {
@@ -40,6 +40,6 @@ export async function clearGoal() {
 
   await prisma.goal.deleteMany({ where: { userId: session.user.id } });
 
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/dashboard");
+  redirect("/dashboard");
 }

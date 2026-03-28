@@ -14,7 +14,7 @@ function SignInFormInner() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
-    await signIn("nodemailer", { email, callbackUrl: "/" });
+    await signIn("nodemailer", { email, callbackUrl: "/dashboard" });
   }
 
   return (

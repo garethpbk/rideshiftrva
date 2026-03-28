@@ -41,7 +41,7 @@ export default async function ConfirmPage({ searchParams }: Props) {
           </CardHeader>
           <CardContent>
             <p className="text-zinc-600">This check-in has already been recorded.</p>
-            <Link href="/" className="mt-4 inline-block text-green-600 underline">
+            <Link href="/dashboard" className="mt-4 inline-block text-green-600 underline">
               Go to Dashboard
             </Link>
           </CardContent>

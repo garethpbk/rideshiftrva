@@ -2,7 +2,6 @@
 
 import { Button } from "@heroui/react";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 
 export function SiteHeader() {
   return (
@@ -22,7 +21,7 @@ export function SiteHeader() {
               My Goal
             </Button>
           </Link>
-          <Link href="/">
+          <Link href="/dashboard">
             <Button className="bg-green-600 text-white font-semibold" size="sm">
               Dashboard
             </Button>

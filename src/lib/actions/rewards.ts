@@ -40,5 +40,5 @@ export async function claimReward(rewardId: string) {
     },
   });
 
-  revalidatePath("/");
+  revalidatePath("/dashboard");
 }
