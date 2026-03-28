@@ -15,7 +15,7 @@ async function main() {
     {
       title: "Free drip coffee with any pastry",
       description:
-        "Show your Ride Shift confirmation to get a free drip coffee when you buy any pastry. Valid at all Richmond locations.",
+        "Show your RideShift confirmation to get a free drip coffee when you buy any pastry. Valid at all Richmond locations.",
       businessName: "Lamplighter Coffee",
       couponCode: "RIDESHIFT-LAMP",
       validFrom,
@@ -25,7 +25,7 @@ async function main() {
     {
       title: "10% off bike tune-up",
       description:
-        "Get 10% off any bike tune-up or repair service. Just mention Ride Shift RVA when you drop off your bike.",
+        "Get 10% off any bike tune-up or repair service. Just mention RideShift RVA when you drop off your bike.",
       businessName: "Carytown Bicycle Co.",
       couponCode: "RIDESHIFT-BIKE10",
       validFrom,

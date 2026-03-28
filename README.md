@@ -1,4 +1,4 @@
-# Ride Shift RVA
+# RideShift RVA
 
 **Move green, save green.** A web app that rewards Richmond residents for car-free commuting. Set a weekly goal (bike, bus, carpool, or walk), confirm you met it via a Sunday email check-in, and unlock coupons from local businesses.
 

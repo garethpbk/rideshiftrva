@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-export const alt = "Ride Shift RVA";
+export const alt = "RideShift RVA";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -26,7 +26,7 @@ export default async function OgImage() {
           fontFamily: "Urbanist",
         }}
       >
-        <div style={{ fontSize: 72, fontWeight: 700 }}>Ride Shift RVA</div>
+        <div style={{ fontSize: 72, fontWeight: 700 }}>RideShift RVA</div>
         <div style={{ fontSize: 32, marginTop: 16, opacity: 0.9 }}>
           Move green, save green.
         </div>

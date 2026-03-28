@@ -63,7 +63,7 @@ export async function sendCouponEmails(userId: string, weekKey: string) {
         subject: `${reward.businessName} would like to thank you for your commitment to sustainability`,
         html: `
           <div style="max-width: 480px; margin: 0 auto; font-family: sans-serif;">
-            <h2 style="color: #16a34a;">Ride Shift RVA</h2>
+            <h2 style="color: #16a34a;">RideShift RVA</h2>
             <p>We're all in this together.</p>
             <p>
               <strong>${reward.businessName}</strong>, a local business dedicated to a

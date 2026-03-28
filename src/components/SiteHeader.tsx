@@ -9,7 +9,7 @@ export function SiteHeader() {
     <header className="border-b border-zinc-100">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <Link href="/" className="text-xl font-bold text-green-600">
-          Ride Shift RVA
+          RideShift RVA
         </Link>
         <nav className="flex items-center gap-2">
           <Link href="/info">

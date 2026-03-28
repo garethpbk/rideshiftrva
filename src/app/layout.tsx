@@ -17,23 +17,23 @@ const figtree = Figtree({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL ?? "http://localhost:3000"),
   title: {
-    default: "Ride Shift RVA",
-    template: "%s | Ride Shift RVA",
+    default: "RideShift RVA",
+    template: "%s | RideShift RVA",
   },
   description:
     "Move green, save green. Earn local rewards for car-free commuting in Richmond, VA.",
-  applicationName: "Ride Shift RVA",
+  applicationName: "RideShift RVA",
   openGraph: {
-    title: "Ride Shift RVA",
+    title: "RideShift RVA",
     description:
       "Move green, save green. Earn local rewards for car-free commuting in Richmond, VA.",
-    siteName: "Ride Shift RVA",
+    siteName: "RideShift RVA",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ride Shift RVA",
+    title: "RideShift RVA",
     description:
       "Move green, save green. Earn local rewards for car-free commuting in Richmond, VA.",
   },
