@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
+import { getCurrentWeekKey, getWeekDateRange } from "@/lib/weeks";
 import { Card, CardHeader, CardContent, Button } from "@heroui/react";
 import { Link } from "@/i18n/navigation";
 import { FeedbackForm } from "@/components/FeedbackForm";
@@ -23,6 +24,16 @@ export default async function CheckInPreviewPage({ params, searchParams }: Props
 
   const { response } = await searchParams;
   const userCount = await prisma.user.count();
+
+  const weekKey = getCurrentWeekKey();
+  const { monday, sunday } = getWeekDateRange(weekKey);
+  const rewards = await prisma.reward.findMany({
+    where: {
+      active: true,
+      validFrom: { lte: sunday },
+      validTo: { gte: monday },
+    },
+  });
 
   if (!response || (response !== "yes" && response !== "no")) {
     return (
@@ -56,6 +67,26 @@ export default async function CheckInPreviewPage({ params, searchParams }: Props
             <p className="text-zinc-600">
               {t("committed", { count: userCount.toLocaleString() })}
             </p>
+            {rewards.length > 0 && (
+              <div>
+                <h2 className="mb-2 text-lg font-semibold text-green-600">{t("yourRewards")}</h2>
+                <div className="flex flex-col gap-2">
+                  {rewards.map((r) => (
+                    <Card key={r.id} className="border border-green-100">
+                      <CardContent className="py-2">
+                        <p className="font-semibold">{r.title}</p>
+                        <p className="text-sm text-zinc-500">{r.businessName}</p>
+                        {r.couponCode && (
+                          <p className="text-sm">
+                            {t("couponCode")}: <span className="font-mono font-bold text-green-600">{r.couponCode}</span>
+                          </p>
+                        )}
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+            )}
             <Link href="/goal">
               <Button className="bg-zinc-100 text-zinc-700">
                 {t("changeGoals")}
@@ -79,6 +110,26 @@ export default async function CheckInPreviewPage({ params, searchParams }: Props
           <p className="text-zinc-600">
             {t("goalsDirection", { count: userCount.toLocaleString() })}
           </p>
+          {rewards.length > 0 && (
+            <div>
+              <h2 className="mb-2 text-lg font-semibold text-green-600">{t("yourRewards")}</h2>
+              <div className="flex flex-col gap-2">
+                {rewards.map((r) => (
+                  <Card key={r.id} className="border border-green-100">
+                    <CardContent className="py-2">
+                      <p className="font-semibold">{r.title}</p>
+                      <p className="text-sm text-zinc-500">{r.businessName}</p>
+                      {r.couponCode && (
+                        <p className="text-sm">
+                          {t("couponCode")}: <span className="font-mono font-bold text-green-600">{r.couponCode}</span>
+                        </p>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
           <FeedbackForm checkInId="preview" />
           <Link href="/goal">
             <Button className="bg-zinc-100 text-zinc-700">
