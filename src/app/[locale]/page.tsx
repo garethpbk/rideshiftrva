@@ -9,21 +9,6 @@ interface Business {
   url: string | null;
 }
 
-const BUSINESS_INFO: Record<string, { url?: string; logo?: string }> = {
-  "Moulton Hot Natives": {
-    url: "https://moultonhotnatives.square.site/",
-    logo: "/mhn-logo.webp",
-  },
-  "Rushing Blooms": {
-    url: "https://rushingblooms.com/",
-    logo: "/rushing-blooms-logo.jpg",
-  },
-  "West Broad Studios": {
-    url: "https://westbroadstudios.com/",
-    logo: "/wbstudios-logo.png",
-  },
-};
-
 export default async function HomePage({
   params,
 }: {
@@ -36,14 +21,14 @@ export default async function HomePage({
 
   const rewards = await prisma.reward.findMany({
     where: { active: true },
-    select: { businessName: true },
+    select: { businessName: true, businessLogo: true, businessUrl: true },
     distinct: ["businessName"],
   });
 
   const businesses: Business[] = rewards.map((r) => ({
     name: r.businessName,
-    logo: BUSINESS_INFO[r.businessName]?.logo ?? null,
-    url: BUSINESS_INFO[r.businessName]?.url || null,
+    logo: r.businessLogo ?? null,
+    url: r.businessUrl ?? null,
   }));
 
   return (
@@ -190,9 +175,13 @@ export default async function HomePage({
       {/* Built on Trust */}
       <section className="bg-green-50 px-4 py-12">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-2xl font-bold text-green-800">{t("trust.title")}</h2>
+          <h2 className="text-2xl font-bold text-green-800">
+            {t("trust.title")}
+          </h2>
           <p className="mt-3 text-green-700">{t("trust.description")}</p>
-          <p className="mt-4 text-sm text-green-600">{t("independence.note")}</p>
+          <p className="mt-4 text-sm text-green-600">
+            {t("independence.note")}
+          </p>
         </div>
       </section>
 

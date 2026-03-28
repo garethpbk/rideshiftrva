@@ -226,6 +226,61 @@
     "noDataYet": "Aún no hay verificaciones — ¡sé el primero en generar impacto!",
     "plannerNote": "Estos datos representan demanda real de transporte multimodal en Richmond. Cada viaje es una señal de que los residentes quieren alternativas a conducir solos."
   },
+  "admin": {
+    "title": "Administración",
+    "backToApp": "Volver a la app",
+    "nav": {
+      "stats": "Estadísticas",
+      "rewards": "Recompensas",
+      "users": "Usuarios"
+    },
+    "stats": {
+      "dashboard": "Panel",
+      "totalUsers": "Usuarios totales",
+      "usersWithGoals": "Usuarios con metas",
+      "confirmedThisWeek": "Confirmados esta semana ({weekKey})",
+      "redemptionsByReward": "Canjes por recompensa",
+      "noRedemptions": "Aún no hay canjes.",
+      "unknownReward": "Recompensa desconocida"
+    },
+    "rewards": {
+      "title": "Recompensas",
+      "createReward": "Crear recompensa",
+      "editReward": "Editar recompensa",
+      "noRewards": "Aún no hay recompensas.",
+      "active": "Activa",
+      "inactive": "Inactiva",
+      "claimed": "canjeados",
+      "ofClaimed": "de {max} canjeados",
+      "edit": "Editar",
+      "activate": "Activar",
+      "deactivate": "Desactivar",
+      "updateReward": "Actualizar recompensa"
+    },
+    "users": {
+      "title": "Usuarios",
+      "noUsers": "Aún no hay usuarios.",
+      "noGoal": "Sin meta establecida",
+      "sendEmail": "Enviar correo",
+      "sending": "Enviando...",
+      "sent": "¡Enviado!",
+      "failed": "Error",
+      "alreadySent": "Ya enviado esta semana",
+      "noGoalSet": "Sin meta establecida"
+    },
+    "form": {
+      "title": "Título",
+      "description": "Descripción",
+      "businessName": "Nombre del negocio",
+      "businessLogoUrl": "URL del logo del negocio",
+      "businessWebsiteUrl": "URL del sitio web del negocio",
+      "couponCode": "Código de cupón",
+      "validFrom": "Válido desde",
+      "validTo": "Válido hasta",
+      "maxRedemptions": "Canjes máximos",
+      "unlimitedPlaceholder": "Dejar en blanco para ilimitado"
+    }
+  },
   "plans": {
     "title": "Planes de transporte de Richmond",
     "subtitle": "Richmond está transformando el transporte con los siguientes esfuerzos:",

@@ -114,9 +114,14 @@ src/
     └── next-auth.d.ts              # Session type extensions
 ```
 
-## Reward management
+## Admin dashboard
 
-Rewards are managed through the platform's database layer. Each reward includes a title, description, business name, coupon code, validity dates, and optional redemption limits. The current rewards are configured via the seed data and can be browsed and edited with `npx prisma studio`. An admin dashboard for self-service reward management by business partners is planned.
+Users with `isAdmin: true` see an **Admin** button in the site header linking to `/admin`. To make a user an admin, set `isAdmin` to `true` on their User document in MongoDB.
+
+The admin dashboard provides:
+
+- **Stats** — total users, users with goals, confirmed check-ins this week, and redemptions by reward
+- **Reward management** — create, edit, activate/deactivate rewards. Each reward has a title, description, business name, logo, website URL, coupon code, validity dates, and optional max redemptions
 
 ## Launch partners
 

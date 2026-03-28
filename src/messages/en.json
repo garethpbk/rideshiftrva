@@ -226,6 +226,61 @@
     "noDataYet": "No check-ins yet — be the first to make an impact!",
     "plannerNote": "This data represents real demand for multimodal transit in Richmond. Every trip is a signal that residents want alternatives to driving alone."
   },
+  "admin": {
+    "title": "Admin",
+    "backToApp": "Back to App",
+    "nav": {
+      "stats": "Stats",
+      "rewards": "Rewards",
+      "users": "Users"
+    },
+    "stats": {
+      "dashboard": "Dashboard",
+      "totalUsers": "Total Users",
+      "usersWithGoals": "Users with Goals",
+      "confirmedThisWeek": "Confirmed This Week ({weekKey})",
+      "redemptionsByReward": "Redemptions by Reward",
+      "noRedemptions": "No redemptions yet.",
+      "unknownReward": "Unknown Reward"
+    },
+    "rewards": {
+      "title": "Rewards",
+      "createReward": "Create Reward",
+      "editReward": "Edit Reward",
+      "noRewards": "No rewards yet.",
+      "active": "Active",
+      "inactive": "Inactive",
+      "claimed": "claimed",
+      "ofClaimed": "of {max} claimed",
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "updateReward": "Update Reward"
+    },
+    "users": {
+      "title": "Users",
+      "noUsers": "No users yet.",
+      "noGoal": "No goal set",
+      "sendEmail": "Send Email",
+      "sending": "Sending...",
+      "sent": "Sent!",
+      "failed": "Failed",
+      "alreadySent": "Already sent this week",
+      "noGoalSet": "No goal set"
+    },
+    "form": {
+      "title": "Title",
+      "description": "Description",
+      "businessName": "Business Name",
+      "businessLogoUrl": "Business Logo URL",
+      "businessWebsiteUrl": "Business Website URL",
+      "couponCode": "Coupon Code",
+      "validFrom": "Valid From",
+      "validTo": "Valid To",
+      "maxRedemptions": "Max Redemptions",
+      "unlimitedPlaceholder": "Leave blank for unlimited"
+    }
+  },
   "plans": {
     "title": "Richmond Transportation Plans",
     "subtitle": "Richmond is shifting transportation with the following efforts:",
