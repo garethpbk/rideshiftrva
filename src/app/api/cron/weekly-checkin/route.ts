@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
-import { transporter, EMAIL_FROM } from "@/lib/email";
+import { sendMail, EMAIL_FROM } from "@/lib/email";
 import { getCurrentWeekKey, getModeLabel } from "@/lib/weeks";
 
 export async function GET(request: NextRequest) {
@@ -53,7 +53,7 @@ export async function GET(request: NextRequest) {
     const modeLabel = getModeLabel(user.goal.mode);
 
     try {
-      await transporter.sendMail({
+      await sendMail({
         from: EMAIL_FROM,
         to: user.email,
         subject: `Did you ${modeLabel.toLowerCase()} ${user.goal.daysPerWeek} days this week?`,

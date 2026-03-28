@@ -1,14 +1,14 @@
 import type { NextAuthConfig } from "next-auth";
 import Nodemailer from "next-auth/providers/nodemailer";
-import { transporter, EMAIL_FROM } from "./email";
+import { sendMail, EMAIL_FROM } from "./email";
 
 export const authConfig: NextAuthConfig = {
   providers: [
     Nodemailer({
-      server: process.env.EMAIL_SERVER,
+      server: process.env.EMAIL_SERVER || "smtp://localhost:1025",
       from: EMAIL_FROM,
       sendVerificationRequest: async ({ identifier: email, url }) => {
-        await transporter.sendMail({
+        await sendMail({
           from: EMAIL_FROM,
           to: email,
           subject: "Sign in to Ride Shift RVA",
