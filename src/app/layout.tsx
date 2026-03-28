@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Urbanist, Figtree } from "next/font/google";
 import { Providers } from "./providers";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 const urbanist = Urbanist({
@@ -58,6 +59,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Providers>
+          <SiteHeader />
           <div className="flex-1">{children}</div>
           <footer className="px-4 py-8 text-center border-t border-zinc-100">
             <p className="font-semibold text-zinc-700">

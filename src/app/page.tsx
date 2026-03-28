@@ -29,6 +29,11 @@ function LandingPage() {
               Get Started
             </Button>
           </Link>
+          <Link href="/info">
+            <Button className="bg-zinc-100 text-zinc-700 font-semibold text-lg px-8 py-3">
+              Transit Resources
+            </Button>
+          </Link>
         </div>
       </section>
 
@@ -210,14 +215,9 @@ export default async function HomePage() {
 
   return (
     <div className="mx-auto max-w-3xl p-4 py-8">
-      <div className="mb-8 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-green-600">Ride Shift RVA</h1>
-          <p className="text-sm text-zinc-500">{session.user.email}</p>
-        </div>
-        <Link href="/goal">
-          <Button className="bg-zinc-100 text-zinc-700" size="sm">Edit Goal</Button>
-        </Link>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-green-600">Dashboard</h1>
+        <p className="text-sm text-zinc-500">{session.user.email}</p>
       </div>
 
       <Card className="mb-6">
