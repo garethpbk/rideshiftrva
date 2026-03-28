@@ -124,3 +124,5 @@ src/
 | Seed rewards | `npx prisma db seed` |
 | Browse database | `npx prisma studio` |
 | Trigger check-in (local) | `curl -H "Authorization: Bearer $CRON_SECRET" http://localhost:3000/api/cron/weekly-checkin` |
+| Test check-in email | `npx tsx scripts/send-checkin.ts you@example.com` |
+| Preview check-in email | `npx tsx scripts/send-checkin.ts you@example.com --dry-run` |
