@@ -20,7 +20,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-4 py-3">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold text-green-600">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/rideshiftrva-logo.jpg" alt="" className="h-12 w-12 rounded" />
+          <img src="/rideshiftrva-logo.png" alt="" className="h-12 w-12 object-contain" />
           {t("brand")}
         </Link>
         <nav
