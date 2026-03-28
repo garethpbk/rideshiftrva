@@ -1,12 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { sendCouponEmails } from "@/lib/email";
 import { getCurrentWeekKey } from "@/lib/weeks";
 
 export async function GET(request: NextRequest) {
+  const session = await auth();
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const email = request.nextUrl.searchParams.get("user");
   if (!email) {
     return NextResponse.json({ error: "Missing ?user= parameter" }, { status: 400 });
+  }
+
+  if (session.user.email !== email && !session.user.isAdmin) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
   const user = await prisma.user.findUnique({
