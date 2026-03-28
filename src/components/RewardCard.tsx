@@ -19,7 +19,12 @@ interface RewardCardProps {
   allClaimed: boolean;
 }
 
-export function RewardCard({ reward, confirmed, redeemed, allClaimed }: RewardCardProps) {
+export function RewardCard({
+  reward,
+  confirmed,
+  redeemed,
+  allClaimed,
+}: RewardCardProps) {
   const t = useTranslations("rewards");
 
   return (
@@ -28,13 +33,15 @@ export function RewardCard({ reward, confirmed, redeemed, allClaimed }: RewardCa
         {reward.businessLogo && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={reward.businessLogo}
+            src={`/${reward.businessLogo}`}
             alt={reward.businessName}
             className="h-16 w-16 rounded-lg object-cover"
           />
         )}
         <div className="flex-1">
-          <p className="text-sm font-medium text-zinc-500">{reward.businessName}</p>
+          <p className="text-sm font-medium text-zinc-500">
+            {reward.businessName}
+          </p>
           <h3 className="text-lg font-semibold">{reward.title}</h3>
           {confirmed && (
             <p className="mt-1 text-sm text-zinc-600">{reward.description}</p>
