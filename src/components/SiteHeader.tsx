@@ -1,9 +1,13 @@
 "use client";
 
 import { Button } from "@heroui/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export function SiteHeader() {
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.isAdmin ?? false;
+
   return (
     <header className="border-b border-zinc-100">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-4 py-3">
@@ -37,6 +41,13 @@ export function SiteHeader() {
               Dashboard
             </Button>
           </Link>
+          {isAdmin && (
+            <Link href="/admin">
+              <Button className="bg-zinc-800 text-white font-semibold" size="sm">
+                Admin
+              </Button>
+            </Link>
+          )}
         </nav>
       </div>
     </header>

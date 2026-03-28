@@ -18,6 +18,7 @@ export async function createReward(formData: FormData) {
   const description = formData.get("description") as string;
   const businessName = formData.get("businessName") as string;
   const businessLogo = (formData.get("businessLogo") as string) || null;
+  const businessUrl = (formData.get("businessUrl") as string) || null;
   const couponCode = (formData.get("couponCode") as string) || null;
   const validFrom = formData.get("validFrom") as string;
   const validTo = formData.get("validTo") as string;
@@ -36,6 +37,7 @@ export async function createReward(formData: FormData) {
       description,
       businessName,
       businessLogo,
+      businessUrl,
       couponCode,
       validFrom: new Date(validFrom),
       validTo: new Date(validTo),
@@ -57,6 +59,7 @@ export async function updateReward(formData: FormData) {
   const description = formData.get("description") as string;
   const businessName = formData.get("businessName") as string;
   const businessLogo = (formData.get("businessLogo") as string) || null;
+  const businessUrl = (formData.get("businessUrl") as string) || null;
   const couponCode = (formData.get("couponCode") as string) || null;
   const validFrom = formData.get("validFrom") as string;
   const validTo = formData.get("validTo") as string;
@@ -83,6 +86,7 @@ export async function updateReward(formData: FormData) {
       description,
       businessName,
       businessLogo,
+      businessUrl,
       couponCode,
       validFrom: new Date(validFrom),
       validTo: new Date(validTo),

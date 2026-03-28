@@ -195,32 +195,17 @@ function LandingPage({ businesses }: { businesses: Business[] }) {
   );
 }
 
-const BUSINESS_INFO: Record<string, { url?: string; logo?: string }> = {
-  "Moulton Hot Natives": {
-    url: "https://moultonhotnatives.square.site/",
-    logo: "/mhn-logo.webp",
-  },
-  "Rushing Blooms": {
-    url: "https://rushingblooms.com/",
-    logo: "/rushing-blooms-logo.jpg",
-  },
-  "West Broad Studios": {
-    url: "https://westbroadstudios.com/",
-    logo: "/wbstudios-logo.png",
-  },
-};
-
 export default async function HomePage() {
   const rewards = await prisma.reward.findMany({
     where: { active: true },
-    select: { businessName: true },
+    select: { businessName: true, businessLogo: true, businessUrl: true },
     distinct: ["businessName"],
   });
 
   const businesses: Business[] = rewards.map((r) => ({
     name: r.businessName,
-    logo: BUSINESS_INFO[r.businessName]?.logo ?? null,
-    url: BUSINESS_INFO[r.businessName]?.url || null,
+    logo: r.businessLogo ?? null,
+    url: r.businessUrl ?? null,
   }));
 
   return <LandingPage businesses={businesses} />;

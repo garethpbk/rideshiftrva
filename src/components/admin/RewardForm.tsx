@@ -10,6 +10,7 @@ interface RewardFormProps {
     description: string;
     businessName: string;
     businessLogo: string | null;
+    businessUrl: string | null;
     couponCode: string | null;
     validFrom: string;
     validTo: string;
@@ -82,6 +83,18 @@ export function RewardForm({ reward }: RewardFormProps) {
             <input
               name="businessLogo"
               defaultValue={reward?.businessLogo ?? ""}
+              placeholder="https://..."
+              className={inputClass}
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1">
+              Business Website URL
+            </label>
+            <input
+              name="businessUrl"
+              defaultValue={reward?.businessUrl ?? ""}
               placeholder="https://..."
               className={inputClass}
             />

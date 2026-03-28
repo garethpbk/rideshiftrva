@@ -27,6 +27,7 @@ export default async function EditRewardPage({
           description: reward.description,
           businessName: reward.businessName,
           businessLogo: reward.businessLogo,
+          businessUrl: reward.businessUrl,
           couponCode: reward.couponCode,
           validFrom: format(reward.validFrom, "yyyy-MM-dd"),
           validTo: format(reward.validTo, "yyyy-MM-dd"),
