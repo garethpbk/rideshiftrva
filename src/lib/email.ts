@@ -76,47 +76,50 @@ export async function sendCouponEmails(userId: string, weekKey: string) {
     include: { _count: { select: { redemptions: true } } },
   });
 
-  for (const reward of rewards) {
-    if (reward.maxRedemptions && reward._count.redemptions >= reward.maxRedemptions) {
-      continue;
-    }
+  const availableRewards = rewards.filter(
+    (r) => !r.maxRedemptions || r._count.redemptions < r.maxRedemptions
+  );
 
-    // Auto-create redemption (skip if already exists)
+  if (availableRewards.length === 0) return;
+
+  // Auto-create redemptions
+  for (const reward of availableRewards) {
     try {
       await prisma.redemption.create({
         data: { userId, rewardId: reward.id, weekKey },
       });
     } catch {
-      // unique constraint violation = already redeemed, that's fine
-    }
-
-    try {
-      await sendMail({
-        from: EMAIL_FROM,
-        to: user.email,
-        subject: `${reward.businessName} would like to thank you for your commitment to sustainability`,
-        html: `
-          <div style="max-width: 480px; margin: 0 auto; font-family: sans-serif;">
-            <h2 style="color: #16a34a;">RideShift RVA</h2>
-            <p>We're all in this together.</p>
-            <p>
-              <strong>${reward.businessName}</strong>, a local business dedicated to a
-              sustainable RVA, would like to thank you for your dedication to our community.
-            </p>
-            <div style="background: #f4f4f5; border-radius: 12px; padding: 20px; margin: 16px 0; text-align: center;">
-              <p style="font-size: 18px; font-weight: 600; margin: 0 0 4px 0;">${reward.title}</p>
-              <p style="color: #666; margin: 0 0 12px 0; font-size: 14px;">${reward.description}</p>
-              ${reward.couponCode ? `<p style="font-size: 24px; font-weight: 700; letter-spacing: 2px; color: #16a34a; margin: 0;">${reward.couponCode}</p>` : ""}
-            </div>
-            <p style="color: #666; font-size: 14px;">
-              Thank you for being part of a greener Richmond.
-            </p>
-            ${emailFooter(user.email)}
-          </div>
-        `,
-      });
-    } catch (error) {
-      console.error(`Failed to send coupon email for ${reward.businessName} to ${user.email}:`, error);
+      // unique constraint violation = already redeemed, fine
     }
   }
+
+  const rewardCards = availableRewards
+    .map(
+      (r) => `
+      <div style="background: #f4f4f5; border-radius: 12px; padding: 20px; margin: 12px 0; text-align: center;">
+        <p style="font-size: 14px; color: #666; margin: 0 0 4px 0;">${r.businessName}</p>
+        <p style="font-size: 18px; font-weight: 600; margin: 0 0 4px 0;">${r.title}</p>
+        <p style="color: #666; margin: 0 0 12px 0; font-size: 14px;">${r.description}</p>
+        ${r.couponCode ? `<p style="font-size: 24px; font-weight: 700; letter-spacing: 2px; color: #16a34a; margin: 0;">${r.couponCode}</p>` : ""}
+      </div>`
+    )
+    .join("");
+
+  await sendMail({
+    from: EMAIL_FROM,
+    to: user.email,
+    subject: `Your weekly rewards from RideShift RVA (${availableRewards.length} deal${availableRewards.length !== 1 ? "s" : ""})`,
+    html: `
+      <div style="max-width: 480px; margin: 0 auto; font-family: sans-serif;">
+        <h2 style="color: #16a34a;">RideShift RVA</h2>
+        <p>Hey${user.name ? ` ${user.name}` : ""}!</p>
+        <p>Thank you for your commitment to a greener Richmond. Here are your rewards this week from our local business partners:</p>
+        ${rewardCards}
+        <p style="color: #666; font-size: 14px; margin-top: 16px;">
+          Show these codes at the business to redeem. Thank you for being part of a greener Richmond!
+        </p>
+        ${emailFooter(user.email)}
+      </div>
+    `,
+  });
 }

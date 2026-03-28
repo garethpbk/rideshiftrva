@@ -142,7 +142,7 @@ export async function sendCheckInEmail(userId: string): Promise<{ success: boole
     revalidatePath("/admin/users", "layout");
     return { success: true };
   } catch (error) {
-    console.error(`Failed to send reward emails to ${user.email}:`, error);
+    console.error(`Failed to send reward email to ${user.email}:`, error);
     return { success: false, error: "Failed to send email" };
   }
 }
