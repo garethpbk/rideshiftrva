@@ -4,11 +4,6 @@ import { sendCouponEmails } from "@/lib/email";
 import { getCurrentWeekKey } from "@/lib/weeks";
 
 export async function GET(request: NextRequest) {
-  const authHeader = request.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const email = request.nextUrl.searchParams.get("user");
   if (!email) {
     return NextResponse.json({ error: "Missing ?user= parameter" }, { status: 400 });
