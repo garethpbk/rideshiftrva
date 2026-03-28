@@ -1,8 +1,4 @@
-"use client";
-
-import { Card, CardContent, CardFooter, Chip, Button } from "@heroui/react";
-import { claimReward } from "@/lib/actions/rewards";
-import { useState } from "react";
+import { Card, CardContent, CardFooter, Chip } from "@heroui/react";
 
 interface RewardCardProps {
   reward: {
@@ -21,23 +17,6 @@ interface RewardCardProps {
 }
 
 export function RewardCard({ reward, confirmed, redeemed, allClaimed }: RewardCardProps) {
-  const [claiming, setClaiming] = useState(false);
-  const [justClaimed, setJustClaimed] = useState(false);
-
-  const isClaimed = redeemed || justClaimed;
-
-  async function handleClaim() {
-    setClaiming(true);
-    try {
-      await claimReward(reward.id);
-      setJustClaimed(true);
-    } catch {
-      // ignore
-    } finally {
-      setClaiming(false);
-    }
-  }
-
   return (
     <Card className="w-full">
       <CardContent className="flex flex-row gap-4">
@@ -61,28 +40,19 @@ export function RewardCard({ reward, confirmed, redeemed, allClaimed }: RewardCa
         {!confirmed && (
           <p className="text-sm text-zinc-400">Complete your check-in to unlock</p>
         )}
-        {confirmed && allClaimed && !isClaimed && (
+        {confirmed && allClaimed && !redeemed && (
           <Chip className="bg-zinc-100 text-zinc-600">All claimed</Chip>
         )}
-        {confirmed && isClaimed && (
+        {confirmed && (redeemed || !allClaimed) && reward.couponCode && (
           <div className="flex items-center gap-2">
-            <Chip className="bg-green-100 text-green-700">Claimed</Chip>
-            {reward.couponCode && (
-              <code className="rounded bg-zinc-100 px-2 py-1 text-sm font-mono">
-                {reward.couponCode}
-              </code>
-            )}
+            <Chip className="bg-green-100 text-green-700">Earned</Chip>
+            <code className="rounded bg-zinc-100 px-2 py-1 text-sm font-mono">
+              {reward.couponCode}
+            </code>
           </div>
         )}
-        {confirmed && !isClaimed && !allClaimed && (
-          <Button
-            className="bg-green-100 text-green-700"
-            size="sm"
-            isDisabled={claiming}
-            onPress={handleClaim}
-          >
-            {claiming ? "Claiming..." : "Claim Reward"}
-          </Button>
+        {confirmed && !redeemed && !allClaimed && !reward.couponCode && (
+          <Chip className="bg-green-100 text-green-700">Unlocked</Chip>
         )}
       </CardFooter>
     </Card>

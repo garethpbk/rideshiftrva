@@ -60,27 +60,31 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-model Goal {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String   @unique @db.ObjectId
+type GoalItem {
   mode        String
   daysPerWeek Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+}
+
+model Goal {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String     @unique @db.ObjectId
+  items     GoalItem[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model WeeklyCheckIn {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId          String    @db.ObjectId
-  weekKey         String
-  goalMode        String
-  goalDaysPerWeek Int
-  confirmed       Boolean   @default(false)
-  confirmToken    String?   @unique
-  sentAt          DateTime?
-  confirmedAt     DateTime?
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String     @db.ObjectId
+  weekKey      String
+  goalSnapshot GoalItem[]
+  response     String?
+  feedback     String?
+  confirmToken String?    @unique
+  sentAt       DateTime?
+  respondedAt  DateTime?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

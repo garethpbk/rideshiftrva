@@ -19,7 +19,7 @@ export default async function GoalPage() {
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
       <GoalForm
-        existingGoal={goal ? { mode: goal.mode, daysPerWeek: goal.daysPerWeek } : null}
+        existingGoal={goal ? { items: goal.items } : null}
       />
     </div>
   );

@@ -4,7 +4,7 @@ import { Card, CardHeader, CardContent, Button } from "@heroui/react";
 import { upsertGoal, clearGoal } from "@/lib/actions/goal";
 import { useState } from "react";
 
-const MODES = [
+const ALL_MODES = [
   { value: "bike", label: "Bike" },
   { value: "bus", label: "Bus" },
   { value: "carpool", label: "Carpool" },
@@ -13,77 +13,110 @@ const MODES = [
 ];
 
 interface GoalFormProps {
-  existingGoal?: { mode: string; daysPerWeek: number } | null;
+  existingGoal?: { items: Array<{ mode: string; daysPerWeek: number }> } | null;
 }
 
 export function GoalForm({ existingGoal }: GoalFormProps) {
-  const [mode, setMode] = useState(existingGoal?.mode || "bike");
-  const [days, setDays] = useState(existingGoal?.daysPerWeek || 3);
+  const [goals, setGoals] = useState<Array<{ mode: string; daysPerWeek: number }>>(
+    existingGoal?.items ?? [{ mode: "bike", daysPerWeek: 3 }]
+  );
+
+  const usedModes = new Set(goals.map((g) => g.mode));
+
+  function updateGoal(index: number, field: "mode" | "daysPerWeek", value: string | number) {
+    setGoals((prev) =>
+      prev.map((g, i) => (i === index ? { ...g, [field]: value } : g))
+    );
+  }
+
+  function removeGoal(index: number) {
+    setGoals((prev) => prev.filter((_, i) => i !== index));
+  }
+
+  function addGoal() {
+    const available = ALL_MODES.find((m) => !usedModes.has(m.value));
+    if (available) {
+      setGoals((prev) => [...prev, { mode: available.value, daysPerWeek: 2 }]);
+    }
+  }
 
   return (
     <Card className="w-full max-w-lg">
       <CardHeader className="flex flex-col gap-1 pb-0">
         <h2 className="text-xl font-bold">
-          {existingGoal ? "Update Your Goal" : "Set Your Weekly Goal"}
+          {existingGoal ? "Update Your Goals" : "Set Your Weekly Goals"}
         </h2>
-        <p className="text-sm text-zinc-500">How will you commute this week?</p>
+        <p className="text-sm text-zinc-500">
+          How will you commute this week? Add multiple modes.
+        </p>
       </CardHeader>
       <CardContent>
-        <form action={upsertGoal} className="flex flex-col gap-6">
-          <fieldset>
-            <legend className="text-sm font-medium mb-2">Commute mode</legend>
-            <div className="flex gap-2">
-              {MODES.map((m) => (
-                <label
-                  key={m.value}
-                  className={`flex-1 cursor-pointer rounded-lg border-2 px-4 py-3 text-center transition-colors ${
-                    mode === m.value
-                      ? "border-green-600 bg-green-50 text-green-700 font-semibold"
-                      : "border-zinc-200 hover:border-zinc-300"
-                  }`}
+        <form action={upsertGoal} className="flex flex-col gap-4">
+          <input type="hidden" name="goals" value={JSON.stringify(goals)} />
+
+          {goals.map((goal, index) => (
+            <div key={index} className="flex items-center gap-3 rounded-lg border border-zinc-200 p-3">
+              <select
+                value={goal.mode}
+                onChange={(e) => updateGoal(index, "mode", e.target.value)}
+                className="rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm"
+              >
+                {ALL_MODES.filter(
+                  (m) => m.value === goal.mode || !usedModes.has(m.value)
+                ).map((m) => (
+                  <option key={m.value} value={m.value}>
+                    {m.label}
+                  </option>
+                ))}
+              </select>
+
+              <div className="flex flex-1 items-center gap-2">
+                <input
+                  type="range"
+                  min={1}
+                  max={7}
+                  value={goal.daysPerWeek}
+                  onChange={(e) => updateGoal(index, "daysPerWeek", parseInt(e.target.value, 10))}
+                  className="flex-1 accent-green-600"
+                />
+                <span className="w-16 text-sm font-medium text-zinc-700">
+                  {goal.daysPerWeek} day{goal.daysPerWeek !== 1 ? "s" : ""}
+                </span>
+              </div>
+
+              {goals.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeGoal(index)}
+                  className="text-zinc-400 hover:text-red-500 text-lg leading-none"
+                  aria-label="Remove"
                 >
-                  <input
-                    type="radio"
-                    name="mode"
-                    value={m.value}
-                    checked={mode === m.value}
-                    onChange={() => setMode(m.value)}
-                    className="sr-only"
-                  />
-                  {m.label}
-                </label>
-              ))}
+                  &times;
+                </button>
+              )}
             </div>
-          </fieldset>
+          ))}
 
-          <div>
-            <label className="block text-sm font-medium mb-2">
-              Days per week: {days}
-            </label>
-            <input
-              type="range"
-              min={1}
-              max={7}
-              value={days}
-              onChange={(e) => setDays(parseInt(e.target.value, 10))}
-              className="w-full accent-green-600"
-            />
-            <div className="flex justify-between text-xs text-zinc-400 mt-1">
-              <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
-            </div>
-            <input type="hidden" name="daysPerWeek" value={days} />
-          </div>
+          {usedModes.size < ALL_MODES.length && (
+            <button
+              type="button"
+              onClick={addGoal}
+              className="rounded-lg border-2 border-dashed border-zinc-200 px-4 py-2 text-sm text-zinc-500 hover:border-green-300 hover:text-green-600"
+            >
+              + Add another mode
+            </button>
+          )}
 
-          <div className="flex gap-2">
+          <div className="flex gap-2 pt-2">
             <Button type="submit" className="bg-green-600 text-white font-semibold">
-              {existingGoal ? "Update Goal" : "Set Goal"}
+              {existingGoal ? "Update Goals" : "Set Goals"}
             </Button>
           </div>
         </form>
         {existingGoal && (
           <form action={clearGoal} className="mt-2">
             <Button type="submit" className="bg-red-100 text-red-700">
-              Clear Goal
+              Clear Goals
             </Button>
           </form>
         )}

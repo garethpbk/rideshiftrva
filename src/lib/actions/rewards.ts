@@ -15,8 +15,8 @@ export async function claimReward(rewardId: string) {
     where: { userId_weekKey: { userId: session.user.id, weekKey } },
   });
 
-  if (!checkIn?.confirmed) {
-    throw new Error("You must confirm your weekly check-in before claiming rewards");
+  if (!checkIn?.response) {
+    throw new Error("You must respond to your weekly check-in before claiming rewards");
   }
 
   const reward = await prisma.reward.findUnique({

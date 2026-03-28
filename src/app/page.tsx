@@ -212,7 +212,7 @@ export default async function HomePage() {
   });
   const redeemedRewardIds = new Set(userRedemptions.map((r) => r.rewardId));
 
-  const confirmed = currentCheckIn?.confirmed ?? false;
+  const responded = currentCheckIn?.response != null;
 
   return (
     <div className="mx-auto max-w-3xl p-4 py-8">
@@ -225,18 +225,24 @@ export default async function HomePage() {
         <CardContent>
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-zinc-500">Your weekly goal</p>
-              <p className="text-lg font-semibold">
-                {getModeLabel(goal.mode)} {goal.daysPerWeek}x per week
-              </p>
+              <p className="text-sm text-zinc-500">Your weekly goals</p>
+              <div className="mt-1 flex flex-wrap gap-2">
+                {goal.items.map((item) => (
+                  <span key={item.mode} className="text-lg font-semibold">
+                    {getModeLabel(item.mode)} {item.daysPerWeek}x/week
+                  </span>
+                ))}
+              </div>
             </div>
-            {confirmed ? (
+            {responded ? (
               <Chip className="bg-green-100 text-green-700">
-                This week: Confirmed!
+                {currentCheckIn?.response === "yes"
+                  ? "Confirmed!"
+                  : "Responded"}
               </Chip>
             ) : (
               <Chip className="bg-amber-100 text-amber-700">
-                Complete your check-in on Sunday to unlock
+                Check-in arrives Sunday
               </Chip>
             )}
           </div>
@@ -263,7 +269,7 @@ export default async function HomePage() {
             maxRedemptions: r.maxRedemptions,
             totalRedemptions: r._count.redemptions,
           }))}
-          confirmed={confirmed}
+          confirmed={responded}
           redeemedRewardIds={redeemedRewardIds}
         />
       </div>
@@ -271,10 +277,9 @@ export default async function HomePage() {
       <CheckInHistory
         checkIns={recentCheckIns.map((ci) => ({
           weekKey: ci.weekKey,
-          goalMode: ci.goalMode,
-          goalDaysPerWeek: ci.goalDaysPerWeek,
-          confirmed: ci.confirmed,
-          confirmedAt: ci.confirmedAt,
+          goalSnapshot: ci.goalSnapshot,
+          response: ci.response,
+          respondedAt: ci.respondedAt,
         }))}
       />
     </div>

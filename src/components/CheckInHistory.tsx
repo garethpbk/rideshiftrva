@@ -1,12 +1,16 @@
 import { Card, CardHeader, CardContent, Chip } from "@heroui/react";
 import { getModeLabel } from "@/lib/weeks";
 
+interface GoalItem {
+  mode: string;
+  daysPerWeek: number;
+}
+
 interface CheckIn {
   weekKey: string;
-  goalMode: string;
-  goalDaysPerWeek: number;
-  confirmed: boolean;
-  confirmedAt: Date | null;
+  goalSnapshot: GoalItem[];
+  response: string | null;
+  respondedAt: Date | null;
 }
 
 interface CheckInHistoryProps {
@@ -44,11 +48,15 @@ export function CheckInHistory({ checkIns }: CheckInHistoryProps) {
               <div>
                 <span className="font-medium">{ci.weekKey}</span>
                 <span className="ml-2 text-sm text-zinc-500">
-                  {getModeLabel(ci.goalMode)} {ci.goalDaysPerWeek}x/week
+                  {ci.goalSnapshot
+                    .map((g) => `${getModeLabel(g.mode)} ${g.daysPerWeek}x`)
+                    .join(", ")}
                 </span>
               </div>
-              {ci.confirmed ? (
+              {ci.response === "yes" ? (
                 <Chip className="bg-green-100 text-green-700" size="sm">Confirmed</Chip>
+              ) : ci.response === "no" ? (
+                <Chip className="bg-blue-100 text-blue-700" size="sm">Responded</Chip>
               ) : (
                 <Chip className="bg-amber-100 text-amber-700" size="sm">Pending</Chip>
               )}
