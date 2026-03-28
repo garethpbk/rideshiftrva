@@ -206,7 +206,8 @@
     "backToApp": "Volver a la app",
     "nav": {
       "stats": "Estadísticas",
-      "rewards": "Recompensas"
+      "rewards": "Recompensas",
+      "users": "Usuarios"
     },
     "stats": {
       "dashboard": "Panel",
@@ -230,6 +231,17 @@
       "activate": "Activar",
       "deactivate": "Desactivar",
       "updateReward": "Actualizar recompensa"
+    },
+    "users": {
+      "title": "Usuarios",
+      "noUsers": "Aún no hay usuarios.",
+      "noGoal": "Sin meta establecida",
+      "sendEmail": "Enviar correo",
+      "sending": "Enviando...",
+      "sent": "¡Enviado!",
+      "failed": "Error",
+      "alreadySent": "Ya enviado esta semana",
+      "noGoalSet": "Sin meta establecida"
     },
     "form": {
       "title": "Título",

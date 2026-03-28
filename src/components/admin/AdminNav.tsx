@@ -10,6 +10,7 @@ export function AdminNav() {
   const links = [
     { href: "/admin" as const, label: t("stats"), exact: true },
     { href: "/admin/rewards" as const, label: t("rewards"), exact: false },
+    { href: "/admin/users" as const, label: t("users"), exact: false },
   ];
 
   return (

@@ -206,7 +206,8 @@
     "backToApp": "Back to App",
     "nav": {
       "stats": "Stats",
-      "rewards": "Rewards"
+      "rewards": "Rewards",
+      "users": "Users"
     },
     "stats": {
       "dashboard": "Dashboard",
@@ -230,6 +231,17 @@
       "activate": "Activate",
       "deactivate": "Deactivate",
       "updateReward": "Update Reward"
+    },
+    "users": {
+      "title": "Users",
+      "noUsers": "No users yet.",
+      "noGoal": "No goal set",
+      "sendEmail": "Send Email",
+      "sending": "Sending...",
+      "sent": "Sent!",
+      "failed": "Failed",
+      "alreadySent": "Already sent this week",
+      "noGoalSet": "No goal set"
     },
     "form": {
       "title": "Title",
