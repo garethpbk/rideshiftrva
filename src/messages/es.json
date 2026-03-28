@@ -169,20 +169,20 @@
     "carpooling": "Viaje compartido",
     "walking": "Caminar y seguridad",
     "grtc": {
-      "name": "Sistema de tránsito GRTC",
-      "description": "Proveedor de transporte público de Richmond: rutas, horarios e información de tarifas para autobuses y el Pulse BRT."
+      "name": "Sistema de tránsito GRTC (Greater Richmond Transit Company)",
+      "description": "Proveedor de transporte público de Richmond: rutas, horarios e información de tarifas para autobuses y el Pulse BRT (Bus Rapid Transit)."
     },
     "grtcMaps": {
-      "name": "Mapas y horarios de GRTC",
+      "name": "Mapas y horarios de GRTC (Greater Richmond Transit Company)",
       "description": "Mapas de rutas, horarios y descripción general del sistema."
     },
     "transitApp": {
-      "name": "Transit App (recomendada por GRTC)",
-      "description": "La app recomendada por GRTC para seguimiento en tiempo real, planificación de viajes y horarios de llegada."
+      "name": "Transit App (recomendada por GRTC / Greater Richmond Transit Company)",
+      "description": "La app recomendada por Greater Richmond Transit Company para seguimiento en tiempo real, planificación de viajes y horarios de llegada."
     },
     "bikeMap": {
       "name": "Mapa de infraestructura ciclista de RVA",
-      "description": "Mapa GIS de la ciudad con ciclovías completadas, senderos de uso compartido e infraestructura para bicicletas."
+      "description": "Mapa GIS (Geographic Information System) de la ciudad con ciclovías completadas, senderos de uso compartido e infraestructura para bicicletas."
     },
     "bikeWalk": {
       "name": "Bike Walk RVA (Sports Backers)",
@@ -198,11 +198,11 @@
     },
     "ridefinders": {
       "name": "RideFinders",
-      "description": "Servicio gratuito de emparejamiento de viajes compartidos y vanpools para viajeros del área de Richmond. Una división de GRTC."
+      "description": "Servicio gratuito de emparejamiento de viajes compartidos y vanpools para viajeros del área de Richmond. Una división de GRTC (Greater Richmond Transit Company)."
     },
     "connectingVA": {
       "name": "ConnectingVA Rideshare",
-      "description": "Programa estatal de viajes compartidos de Virginia DRPT: registra viajes, encuentra compañeros y gana recompensas."
+      "description": "Programa estatal de viajes compartidos de Virginia DRPT (Department of Rail and Public Transportation): registra viajes, encuentra compañeros y gana recompensas."
     },
     "virginiaPaths": {
       "name": "Virginia PATHS",

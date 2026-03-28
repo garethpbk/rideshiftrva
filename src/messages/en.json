@@ -169,20 +169,20 @@
     "carpooling": "Carpooling & Rideshare",
     "walking": "Walking & Safety",
     "grtc": {
-      "name": "GRTC Transit System",
-      "description": "Richmond's public transit provider — routes, schedules, and fare info for buses and the Pulse BRT."
+      "name": "GRTC (Greater Richmond Transit Company) Transit System",
+      "description": "Richmond's public transit provider — routes, schedules, and fare info for buses and the Pulse BRT (Bus Rapid Transit)."
     },
     "grtcMaps": {
-      "name": "GRTC Maps & Schedules",
+      "name": "GRTC (Greater Richmond Transit Company) Maps & Schedules",
       "description": "Route maps, timetables, and system overview."
     },
     "transitApp": {
-      "name": "Transit App (GRTC recommended)",
-      "description": "GRTC's recommended app for real-time bus tracking, trip planning, and arrival times."
+      "name": "Transit App (GRTC / Greater Richmond Transit Company recommended)",
+      "description": "Greater Richmond Transit Company's recommended app for real-time bus tracking, trip planning, and arrival times."
     },
     "bikeMap": {
       "name": "RVA Bike Infrastructure Map",
-      "description": "City GIS map of completed bike lanes, shared-use paths, and bicycle infrastructure."
+      "description": "City GIS (Geographic Information System) map of completed bike lanes, shared-use paths, and bicycle infrastructure."
     },
     "bikeWalk": {
       "name": "Bike Walk RVA (Sports Backers)",
@@ -198,11 +198,11 @@
     },
     "ridefinders": {
       "name": "RideFinders",
-      "description": "Free carpool and vanpool matching for Richmond-area commuters. A division of GRTC."
+      "description": "Free carpool and vanpool matching for Richmond-area commuters. A division of GRTC (Greater Richmond Transit Company)."
     },
     "connectingVA": {
       "name": "ConnectingVA Rideshare",
-      "description": "Virginia DRPT's statewide rideshare program — log commutes, find matches, earn rewards."
+      "description": "Virginia DRPT (Department of Rail and Public Transportation) statewide rideshare program — log commutes, find matches, earn rewards."
     },
     "virginiaPaths": {
       "name": "Virginia PATHS",
