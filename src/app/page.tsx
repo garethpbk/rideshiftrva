@@ -1,7 +1,8 @@
+import { prisma } from "@/lib/prisma";
 import { Card, CardContent, Button } from "@heroui/react";
 import Link from "next/link";
 
-function LandingPage() {
+function LandingPage({ businesses }: { businesses: string[] }) {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero */}
@@ -145,13 +146,15 @@ function LandingPage() {
           <p className="mt-2 text-zinc-500">
             Local businesses already on board
           </p>
-          <div className="mt-8 flex justify-center gap-8">
-            <div className="text-center">
-              <p className="text-lg font-semibold">Rushing Blooms</p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-semibold">Moulton Hot Natives</p>
-            </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-8">
+            {businesses.map((name) => (
+              <div key={name} className="text-center">
+                <p className="text-lg font-semibold">{name}</p>
+              </div>
+            ))}
+            {businesses.length === 0 && (
+              <p className="text-zinc-400">Coming soon!</p>
+            )}
           </div>
         </div>
       </section>
@@ -160,6 +163,13 @@ function LandingPage() {
   );
 }
 
-export default function HomePage() {
-  return <LandingPage />;
+export default async function HomePage() {
+  const rewards = await prisma.reward.findMany({
+    where: { active: true },
+    select: { businessName: true },
+    distinct: ["businessName"],
+  });
+  const businesses = rewards.map((r) => r.businessName);
+
+  return <LandingPage businesses={businesses} />;
 }
