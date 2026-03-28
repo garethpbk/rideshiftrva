@@ -11,21 +11,19 @@ const PLANS = [
     url: "https://experience.arcgis.com/experience/120779108e77426c84cd61ec48477ae4",
     description:
       "Interactive map tracking Richmond's active transportation infrastructure projects.",
-    embed: true,
+    preview: "/images/richmond-connects-tracker.png",
   },
   {
     name: "Vision Zero Plan: Safer Roads for All Modes",
     url: "https://www.rva.gov/sites/default/files/2021-05/VisionZero-RichmondActionPlan.pdf",
     description:
       "The City of Richmond's action plan to eliminate traffic fatalities and serious injuries.",
-    embed: false,
   },
   {
     name: "Bicycle Master Plan",
     url: "https://www.rva.gov/sites/default/files/2019-10/Richmond%20Bicycle%20Master%20Plan%203.6.15_lr.pdf",
     description:
       "Richmond's comprehensive plan for expanding and improving bicycle infrastructure citywide.",
-    embed: false,
   },
 ];
 
@@ -53,16 +51,20 @@ export default function PlansPage() {
                 <p className="mt-1 text-sm text-zinc-600">{plan.description}</p>
               </CardContent>
             </Card>
-            {plan.embed && (
-              <div className="mt-3 overflow-hidden rounded-lg border border-zinc-200">
-                <iframe
-                  src={plan.url}
-                  title={plan.name}
-                  className="h-[500px] w-full"
-                  loading="lazy"
-                  allowFullScreen
+            {"preview" in plan && plan.preview && (
+              <a
+                href={plan.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 block overflow-hidden rounded-lg border border-zinc-200 transition-shadow hover:shadow-lg"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={plan.preview}
+                  alt={`Preview of ${plan.name}`}
+                  className="w-full"
                 />
-              </div>
+              </a>
             )}
           </div>
         ))}
