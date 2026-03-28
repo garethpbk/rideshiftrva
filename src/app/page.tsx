@@ -7,14 +7,26 @@ import { GoalForm } from "@/components/GoalForm";
 import { Card, CardContent, Chip, Button } from "@heroui/react";
 import Link from "next/link";
 
+const PARTICIPATING_BUSINESSES = [
+  {
+    name: "Rushing Blooms",
+    logo: "/rushing-blooms-logo.jpg",
+    website: "https://rushingblooms.com/",
+  },
+  {
+    name: "Moulton Hot Natives",
+    logo: "/mhn-logo.webp",
+    website: "https://moultonhotnatives.square.site/",
+  },
+];
+
 function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero */}
       <section className="flex flex-col items-center justify-center gap-6 px-4 py-24 text-center">
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-          Move Richmond.{" "}
-          <span className="text-green-600">Get Rewarded.</span>
+          Move Richmond. <span className="text-green-600">Get Rewarded.</span>
         </h1>
         <p className="max-w-xl text-xl text-zinc-600">
           Mix your commute. Unlock local deals.
@@ -92,8 +104,8 @@ function LandingPage() {
                 <p className="text-4xl font-bold text-green-600">1</p>
                 <h3 className="mt-2 text-lg font-semibold">Move</h3>
                 <p className="text-sm text-zinc-500">
-                  Take the bus, bike, scooter, walk, or combine modes — then set your
-                  weekly goal in the app
+                  Take the bus, bike, scooter, walk, or combine modes — then set
+                  your weekly goal in the app
                 </p>
               </CardContent>
             </Card>
@@ -102,8 +114,8 @@ function LandingPage() {
                 <p className="text-4xl font-bold text-green-600">2</p>
                 <h3 className="mt-2 text-lg font-semibold">Confirm</h3>
                 <p className="text-sm text-zinc-500">
-                  Get a Sunday check-in email and confirm you met your goal
-                  with one click
+                  Get a Sunday check-in email and confirm you met your goal with
+                  one click
                 </p>
               </CardContent>
             </Card>
@@ -138,8 +150,8 @@ function LandingPage() {
               <h3 className="text-xl font-bold">For Local Businesses</h3>
               <p className="mt-2 text-zinc-600">
                 Turn Richmond commuters into your regulars. List a weekly deal,
-                attract foot traffic, and show your community you&apos;re invested
-                in a cleaner, smarter city.
+                attract foot traffic, and show your community you&apos;re
+                invested in a cleaner, smarter city.
               </p>
             </CardContent>
           </Card>
@@ -153,17 +165,26 @@ function LandingPage() {
           <p className="mt-2 text-zinc-500">
             Local businesses already on board
           </p>
-          <div className="mt-8 flex justify-center gap-8">
-            <div className="text-center">
-              <p className="text-lg font-semibold">Rushing Blooms</p>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-semibold">Moulton Hot Natives</p>
-            </div>
+          <div className="mt-8 flex justify-center items-center gap-12">
+            {PARTICIPATING_BUSINESSES.map((biz) => (
+              <a
+                key={biz.name}
+                href={biz.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-opacity hover:opacity-80"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={biz.logo}
+                  alt={biz.name}
+                  className="h-24 w-auto rounded-lg object-contain"
+                />
+              </a>
+            ))}
           </div>
         </div>
       </section>
-
     </div>
   );
 }
@@ -176,7 +197,10 @@ export default async function HomePage() {
     prisma.goal.findUnique({ where: { userId: session.user.id } }),
     prisma.weeklyCheckIn.findUnique({
       where: {
-        userId_weekKey: { userId: session.user.id, weekKey: getCurrentWeekKey() },
+        userId_weekKey: {
+          userId: session.user.id,
+          weekKey: getCurrentWeekKey(),
+        },
       },
     }),
     prisma.weeklyCheckIn.findMany({
@@ -235,7 +259,9 @@ export default async function HomePage() {
             </div>
             {responded ? (
               <Chip className="bg-green-100 text-green-700">
-                {currentCheckIn?.response === "yes" ? "Confirmed!" : "Responded"}
+                {currentCheckIn?.response === "yes"
+                  ? "Confirmed!"
+                  : "Responded"}
               </Chip>
             ) : (
               <Chip className="bg-amber-100 text-amber-700">
