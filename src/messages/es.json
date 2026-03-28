@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "RideShift RVA",
+    "description": "Mueve verde, ahorra verde. Gana recompensas locales por usar transporte sin auto en Richmond, VA."
+  },
+  "header": {
+    "brand": "RideShift RVA",
+    "transitResources": "Recursos de transporte",
+    "transitPlans": "Planes de transporte",
+    "myGoal": "Mi meta",
+    "dashboard": "Panel",
+    "language": "English"
+  },
+  "footer": {
+    "builtAt": "Construido en",
+    "hackForRVA": "Hack for RVA",
+    "tagline": "Las ciudades prosperan cuando la gente se mueve por ellas con intención. Nuestra plataforma conecta a viajeros ecoconscientes con negocios locales, convirtiendo cada viaje en autobús, bicicleta compartida y viaje compartido en un paso hacia recompensas semanales exclusivas."
+  },
+  "landing": {
+    "hero": {
+      "title": "Mueve verde.",
+      "titleHighlight": "Ahorra verde.",
+      "subtitle": "Varía tu viaje. Desbloquea ofertas locales.",
+      "description": "RideShift RVA conecta a los residentes de Richmond con descuentos semanales de negocios locales, solo por elegir el autobús, una bicicleta o tus propios pies.",
+      "getStarted": "Comenzar",
+      "transitResources": "Recursos de transporte"
+    },
+    "problem": {
+      "title": "El problema",
+      "description": "Demasiados viajes en Richmond comienzan y terminan en un solo auto. El tráfico aumenta. Las emisiones suben. Y nuestras calles, ya en constante construcción, sufren las consecuencias.",
+      "driveAlone": "Conducen solos",
+      "carpool": "Viaje compartido",
+      "publicTransit": "Transporte público",
+      "walkBikeScooter": "Caminan / bici / scooter",
+      "systemicContext": "Estos números reflejan décadas de infraestructura centrada en el automóvil: abundante estacionamiento gratuito en el centro, brechas en la cobertura de autobuses GRTC — especialmente rutas transversales — calles diseñadas para la velocidad en vez de la seguridad, e infraestructura ciclista protegida limitada. RideShift no pretende solucionar todo esto. Pero al recompensar a los residentes de Richmond que eligen alternativas a pesar de estas barreras, cambiamos las señales de demanda y demostramos que existe apetito por el transporte multimodal."
+    },
+    "solution": {
+      "title": "La solución",
+      "description": "RideShift hace que el transporte multimodal valga la pena. Establece una meta semanal, confirma que la cumpliste y canjea ofertas reales en negocios locales inscritos en el programa: menos emisiones y ahorros reales. Así de simple."
+    },
+    "howItWorks": {
+      "title": "Cómo funciona",
+      "step1Title": "Muévete",
+      "step1Description": "Toma el autobús, bici, scooter, camina o combina modos, luego establece tu meta semanal en la app",
+      "step2Title": "Confirma",
+      "step2Description": "Recibe un correo de verificación el domingo y confirma que cumpliste tu meta con un clic",
+      "step3Title": "Ahorra",
+      "step3Description": "Desbloquea ofertas semanales en negocios de Richmond"
+    },
+    "forEveryone": {
+      "residentsTitle": "Para cada residente de Richmond",
+      "residentsDescription": "RideShift está hecho para todo Richmond, cada vecindario, cada código postal. Regístrate solo con tu correo y empieza a ganar recompensas por la forma en que ya te mueves.",
+      "businessTitle": "Para negocios locales",
+      "businessDescription": "Convierte a los viajeros de Richmond en tus clientes habituales. Ofrece una oferta semanal, atrae tráfico peatonal y muestra a tu comunidad que estás comprometido con una ciudad más limpia e inteligente."
+    },
+    "trust": {
+      "title": "Construido en la confianza",
+      "description": "Sin GPS. Sin rastreo. Solo tu palabra. RideShift confía en que los residentes de Richmond reporten honestamente — porque los programas cívicos funcionan mejor cuando reducen barreras en vez de crearlas."
+    },
+    "independence": {
+      "note": "RideShift funciona de forma independiente — sin sistemas de la ciudad, sin presupuesto municipal, sin personal gubernamental. Solo residentes de Richmond y negocios locales."
+    },
+    "businesses": {
+      "title": "Negocios participantes",
+      "subtitle": "Negocios locales ya inscritos",
+      "comingSoon": "Próximamente"
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "weeklyGoals": "Tus metas semanales",
+    "confirmed": "Confirmado",
+    "responded": "Respondido",
+    "checkInSunday": "Tu verificación llega el domingo",
+    "thisWeeksRewards": "Recompensas de esta semana",
+    "fromLocalBusinesses": "{count} de negocios locales",
+    "daysPerWeek": "{mode} {days}x/semana",
+    "streak": "Racha de {count} semanas",
+    "streakStart": "¡Comienza tu racha!",
+    "impactTitle": "Tu impacto",
+    "tripsAvoided": "Viajes en auto evitados",
+    "milesSaved": "Millas no conducidas",
+    "co2Saved": "Lbs CO₂ ahorradas"
+  },
+  "goal": {
+    "setTitle": "Establece tus metas semanales",
+    "updateTitle": "Actualiza tus metas",
+    "subtitle": "¿Cómo te moverás esta semana? Agrega múltiples modos.",
+    "days": "{count} día",
+    "daysPlural": "{count} días",
+    "addMode": "+ Agregar otro modo",
+    "setGoals": "Establecer metas",
+    "updateGoals": "Actualizar metas",
+    "clearGoals": "Borrar metas",
+    "removeLabel": "Eliminar"
+  },
+  "modes": {
+    "bike": "Bicicleta",
+    "bus": "Autobús",
+    "carpool": "Viaje compartido",
+    "walk": "Caminar",
+    "scooter": "Scooter"
+  },
+  "checkin": {
+    "title": "Confirmar verificación",
+    "invalidLink": "Enlace de confirmación inválido.",
+    "alreadyResponded": "Ya respondido",
+    "alreadyRespondedDescription": "Esta verificación ya fue registrada.",
+    "goToDashboard": "Ir al panel",
+    "greatWork": "¡Excelente trabajo!",
+    "committed": "Eres uno de {count} residentes de Richmond comprometidos con una ciudad más sostenible. ¡Revisa tu correo para un agradecimiento de uno de nuestros negocios locales asociados!",
+    "stillOnPath": "Sigues en el camino correcto",
+    "goalsDirection": "Las metas marcan una dirección, no son un destino. Eres uno de {count} residentes de Richmond comprometidos con una ciudad más sostenible. ¡Revisa tu correo para un agradecimiento de uno de nuestros negocios locales asociados!",
+    "yourRewards": "Tus recompensas",
+    "couponCode": "Código de cupón",
+    "changeGoals": "¿Necesitas cambiar tus metas?",
+    "preview": {
+      "title": "Vista previa de verificación",
+      "subtitle": "Vista previa de la experiencia de verificación",
+      "previewAs": "Vista previa como:",
+      "yesLabel": "Sí, cumplí mis metas",
+      "noLabel": "No, esta semana no"
+    }
+  },
+  "feedback": {
+    "label": "¿Hubo algo que dificultó cumplir tus metas?",
+    "placeholder": "Opcional — comparte qué se interpuso",
+    "submit": "Enviar comentario",
+    "thanks": "¡Gracias por tu comentario!"
+  },
+  "rewards": {
+    "unlockPrompt": "Completa tu verificación para desbloquear",
+    "allClaimed": "Todo reclamado",
+    "earned": "Ganado",
+    "unlocked": "Desbloqueado",
+    "noRewards": "No hay recompensas disponibles esta semana — ¡vuelve pronto!"
+  },
+  "history": {
+    "title": "Historial de verificaciones",
+    "empty": "Aún no hay verificaciones — ¡tu primera llega el domingo!",
+    "confirmed": "Confirmado",
+    "responded": "Respondido",
+    "pending": "Pendiente"
+  },
+  "auth": {
+    "signInTitle": "RideShift RVA",
+    "signInSubtitle": "Inicia sesión con tu correo",
+    "goalConfirmed": "¡Meta confirmada! Inicia sesión para reclamar tus recompensas.",
+    "sendMagicLink": "Enviar enlace mágico",
+    "sending": "Enviando...",
+    "checkEmail": "Revisa tu correo",
+    "magicLinkSent": "Te enviamos un enlace mágico. Haz clic para iniciar sesión.",
+    "checkSpam": "Si no lo ves, revisa tu carpeta de spam."
+  },
+  "info": {
+    "title": "Recursos de transporte de Richmond",
+    "subtitle": "Todo lo que necesitas para moverte por Richmond sin auto.",
+    "publicTransit": "Transporte público",
+    "biking": "Bicicleta",
+    "scooters": "Scooters",
+    "carpooling": "Viaje compartido",
+    "walking": "Caminar y seguridad",
+    "grtc": {
+      "name": "Sistema de tránsito GRTC",
+      "description": "Proveedor de transporte público de Richmond: rutas, horarios e información de tarifas para autobuses y el Pulse BRT."
+    },
+    "grtcMaps": {
+      "name": "Mapas y horarios de GRTC",
+      "description": "Mapas de rutas, horarios y descripción general del sistema."
+    },
+    "transitApp": {
+      "name": "Transit App (recomendada por GRTC)",
+      "description": "La app recomendada por GRTC para seguimiento en tiempo real, planificación de viajes y horarios de llegada."
+    },
+    "bikeMap": {
+      "name": "Mapa de infraestructura ciclista de RVA",
+      "description": "Mapa GIS de la ciudad con ciclovías completadas, senderos de uso compartido e infraestructura para bicicletas."
+    },
+    "bikeWalk": {
+      "name": "Bike Walk RVA (Sports Backers)",
+      "description": "Guía de ciclovías con rutas recomendadas y conexiones de senderos en Richmond."
+    },
+    "pedBikeTrails": {
+      "name": "Peatones, bicicletas y senderos",
+      "description": "Página oficial de la Ciudad de Richmond para proyectos de infraestructura peatonal y ciclista."
+    },
+    "escooter": {
+      "name": "Programa de e-scooters de Richmond",
+      "description": "Información de la ciudad sobre operadores de e-scooters (Bird, Spin), zonas de equidad con viajes con descuento y reglas de la vía."
+    },
+    "ridefinders": {
+      "name": "RideFinders",
+      "description": "Servicio gratuito de emparejamiento de viajes compartidos y vanpools para viajeros del área de Richmond. Una división de GRTC."
+    },
+    "connectingVA": {
+      "name": "ConnectingVA Rideshare",
+      "description": "Programa estatal de viajes compartidos de Virginia DRPT: registra viajes, encuentra compañeros y gana recompensas."
+    },
+    "virginiaPaths": {
+      "name": "Virginia PATHS",
+      "description": "Defensa de la seguridad peatonal y el transporte activo en Virginia, incluyendo evaluaciones de seguridad vial en Richmond."
+    }
+  },
+  "plans": {
+    "title": "Planes de transporte de Richmond",
+    "subtitle": "Richmond está transformando el transporte con los siguientes esfuerzos:",
+    "feedbackTitle": "¿Tienes una idea para mejorar?",
+    "feedbackDescription": "Envía un comentario al equipo de Richmond Connects:",
+    "feedbackButton": "Compartir tu opinión",
+    "richmondConnects": {
+      "name": "Rastreador de proyectos Richmond Connects",
+      "description": "Mapa interactivo que rastrea los proyectos de infraestructura de transporte activo de Richmond."
+    },
+    "visionZero": {
+      "name": "Plan Vision Zero: Calles más seguras para todos",
+      "description": "El plan de acción de la Ciudad de Richmond para eliminar muertes y lesiones graves por tráfico."
+    },
+    "bicycleMaster": {
+      "name": "Plan maestro de bicicletas",
+      "description": "El plan integral de Richmond para expandir y mejorar la infraestructura ciclista en toda la ciudad."
+    }
+  }
+}

@@ -1,4 +1,7 @@
+"use client";
+
 import { RewardCard } from "./RewardCard";
+import { useTranslations } from "next-intl";
 
 interface Reward {
   id: string;
@@ -18,10 +21,12 @@ interface RewardGridProps {
 }
 
 export function RewardGrid({ rewards, confirmed, redeemedRewardIds }: RewardGridProps) {
+  const t = useTranslations("rewards");
+
   if (rewards.length === 0) {
     return (
       <div className="rounded-lg border border-dashed border-default-300 p-8 text-center">
-        <p className="text-default-500">No rewards available this week — check back soon!</p>
+        <p className="text-default-500">{t("noRewards")}</p>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Card, CardContent, Button } from "@heroui/react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Richmond Transportation Plans",
@@ -7,32 +8,35 @@ export const metadata: Metadata = {
 
 const PLANS = [
   {
-    name: "Richmond Connects Project Tracker",
+    key: "richmondConnects" as const,
     url: "https://experience.arcgis.com/experience/120779108e77426c84cd61ec48477ae4",
-    description:
-      "Interactive map tracking Richmond's active transportation infrastructure projects.",
     preview: "/images/richmond-connects-tracker.png",
   },
   {
-    name: "Vision Zero Plan: Safer Roads for All Modes",
+    key: "visionZero" as const,
     url: "https://www.rva.gov/sites/default/files/2021-05/VisionZero-RichmondActionPlan.pdf",
-    description:
-      "The City of Richmond's action plan to eliminate traffic fatalities and serious injuries.",
   },
   {
-    name: "Bicycle Master Plan",
+    key: "bicycleMaster" as const,
     url: "https://www.rva.gov/sites/default/files/2019-10/Richmond%20Bicycle%20Master%20Plan%203.6.15_lr.pdf",
-    description:
-      "Richmond's comprehensive plan for expanding and improving bicycle infrastructure citywide.",
   },
 ];
 
-export default function PlansPage() {
+export default async function PlansPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("plans");
+
   return (
     <div className="mx-auto max-w-4xl p-4 py-8">
-      <h1 className="text-3xl font-bold">Richmond Transportation Plans</h1>
+      <h1 className="text-3xl font-bold">{t("title")}</h1>
       <p className="mt-2 text-zinc-600">
-        Richmond is shifting transportation with the following efforts:
+        {t("subtitle")}
       </p>
 
       <div className="mt-8 flex flex-col gap-8">
@@ -46,9 +50,9 @@ export default function PlansPage() {
                   rel="noopener noreferrer"
                   className="text-xl font-semibold text-green-700 underline decoration-green-300 underline-offset-2 hover:decoration-green-600"
                 >
-                  {plan.name}
+                  {t(`${plan.key}.name`)}
                 </a>
-                <p className="mt-1 text-sm text-zinc-600">{plan.description}</p>
+                <p className="mt-1 text-sm text-zinc-600">{t(`${plan.key}.description`)}</p>
               </CardContent>
             </Card>
             {"preview" in plan && plan.preview && (
@@ -61,7 +65,7 @@ export default function PlansPage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={plan.preview}
-                  alt={`Preview of ${plan.name}`}
+                  alt={`Preview of ${t(`${plan.key}.name`)}`}
                   className="w-full"
                 />
               </a>
@@ -72,10 +76,10 @@ export default function PlansPage() {
 
       <div className="mt-12 rounded-lg bg-green-50 p-6">
         <h2 className="text-xl font-bold text-green-800">
-          Got an idea to make it better?
+          {t("feedbackTitle")}
         </h2>
         <p className="mt-2 text-green-700">
-          Submit a comment to the Richmond Connects team:
+          {t("feedbackDescription")}
         </p>
         <div className="mt-4">
           <a
@@ -84,7 +88,7 @@ export default function PlansPage() {
             rel="noopener noreferrer"
           >
             <Button className="bg-green-600 text-white font-semibold">
-              Share Your Feedback
+              {t("feedbackButton")}
             </Button>
           </a>
         </div>

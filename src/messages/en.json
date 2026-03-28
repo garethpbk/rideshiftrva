@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "title": "RideShift RVA",
+    "description": "Move green, save green. Earn local rewards for car-free commuting in Richmond, VA."
+  },
+  "header": {
+    "brand": "RideShift RVA",
+    "transitResources": "Transit Resources",
+    "transitPlans": "Transit Plans",
+    "myGoal": "My Goal",
+    "dashboard": "Dashboard",
+    "language": "Español"
+  },
+  "footer": {
+    "builtAt": "Built at",
+    "hackForRVA": "Hack for RVA",
+    "tagline": "Cities thrive when people move through them intentionally. Our platform connects eco-conscious commuters with local businesses — turning every bus ride, bike share, and carpool into a stepping stone toward exclusive weekly rewards."
+  },
+  "landing": {
+    "hero": {
+      "title": "Move Green.",
+      "titleHighlight": "Save Green.",
+      "subtitle": "Mix your commute. Unlock local deals.",
+      "description": "RideShift RVA connects Richmonders with weekly discounts from local businesses — just for choosing the bus, a bike, or your own two feet.",
+      "getStarted": "Get Started",
+      "transitResources": "Transit Resources"
+    },
+    "problem": {
+      "title": "The Problem",
+      "description": "Too many Richmond commutes start and end in a single car. Traffic builds. Emissions rise. And our roads — already under constant construction — take the hit.",
+      "driveAlone": "Drive alone",
+      "carpool": "Carpool",
+      "publicTransit": "Public transit",
+      "walkBikeScooter": "Walk / bike / scooter",
+      "systemicContext": "These numbers reflect decades of car-centric infrastructure: abundant free parking downtown, gaps in GRTC bus coverage — especially cross-town routes — streets designed for speed rather than safety, and limited protected bike infrastructure. RideShift doesn't pretend to fix all of this. But by rewarding the Richmonders who choose alternatives despite these barriers, we shift demand signals and prove the appetite for multimodal transit exists."
+    },
+    "solution": {
+      "title": "The Solution",
+      "description": "RideShift makes multimodal transit worth it. Set a weekly goal, confirm you met it, and redeem real deals at local businesses enrolled in the program — lower emissions and real savings at participating spots. Simple."
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1Title": "Move",
+      "step1Description": "Take the bus, bike, scooter, walk, or combine modes — then set your weekly goal in the app",
+      "step2Title": "Confirm",
+      "step2Description": "Get a Sunday check-in email and confirm you met your goal with one click",
+      "step3Title": "Save",
+      "step3Description": "Unlock weekly deals at participating Richmond businesses"
+    },
+    "forEveryone": {
+      "residentsTitle": "For Every Richmonder",
+      "residentsDescription": "RideShift is built for all of Richmond — every neighborhood, every zip code. Sign up with just your email and start earning rewards for the way you already get around.",
+      "businessTitle": "For Local Businesses",
+      "businessDescription": "Turn Richmond commuters into your regulars. List a weekly deal, attract foot traffic, and show your community you're invested in a cleaner, smarter city."
+    },
+    "trust": {
+      "title": "Built on Trust",
+      "description": "No GPS. No tracking. Just your word. RideShift trusts Richmond residents to report honestly — because civic programs work best when they lower barriers instead of raising them."
+    },
+    "independence": {
+      "note": "RideShift runs independently — no city systems, no city budget, no city staff. Just Richmond residents and local businesses."
+    },
+    "businesses": {
+      "title": "Participating Businesses",
+      "subtitle": "Local businesses already on board",
+      "comingSoon": "Coming soon!"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "weeklyGoals": "Your weekly goals",
+    "confirmed": "Confirmed!",
+    "responded": "Responded",
+    "checkInSunday": "Check-in arrives Sunday",
+    "thisWeeksRewards": "This Week's Rewards",
+    "fromLocalBusinesses": "{count} from local businesses",
+    "daysPerWeek": "{mode} {days}x/week",
+    "streak": "{count}-week streak",
+    "streakStart": "Start your streak!",
+    "impactTitle": "Your Impact",
+    "tripsAvoided": "Car trips avoided",
+    "milesSaved": "Miles not driven",
+    "co2Saved": "Lbs CO₂ saved"
+  },
+  "goal": {
+    "setTitle": "Set Your Weekly Goals",
+    "updateTitle": "Update Your Goals",
+    "subtitle": "How will you commute this week? Add multiple modes.",
+    "days": "{count} day",
+    "daysPlural": "{count} days",
+    "addMode": "+ Add another mode",
+    "setGoals": "Set Goals",
+    "updateGoals": "Update Goals",
+    "clearGoals": "Clear Goals",
+    "removeLabel": "Remove"
+  },
+  "modes": {
+    "bike": "Bike",
+    "bus": "Bus",
+    "carpool": "Carpool",
+    "walk": "Walk",
+    "scooter": "Scooter"
+  },
+  "checkin": {
+    "title": "Confirm Check-In",
+    "invalidLink": "Invalid confirm link.",
+    "alreadyResponded": "Already Responded",
+    "alreadyRespondedDescription": "This check-in has already been recorded.",
+    "goToDashboard": "Go to Dashboard",
+    "greatWork": "Great work!",
+    "committed": "You're one of {count} Richmond residents committed to a more sustainable city. Check your email for a thank you from one of our local business partners!",
+    "stillOnPath": "You're still on the right path",
+    "goalsDirection": "Goals set a direction — they're not a destination. You're one of {count} Richmond residents committed to a more sustainable city. Check your email for a thank you from one of our local business partners!",
+    "yourRewards": "Your Rewards",
+    "couponCode": "Coupon code",
+    "changeGoals": "Need to change your goals?",
+    "preview": {
+      "title": "Check-In Preview",
+      "subtitle": "Preview the check-in experience",
+      "previewAs": "Preview as:",
+      "yesLabel": "Yes, I met my goals",
+      "noLabel": "No, not this week"
+    }
+  },
+  "feedback": {
+    "label": "Was there anything that made meeting your goals difficult?",
+    "placeholder": "Optional — share what got in the way",
+    "submit": "Send Feedback",
+    "thanks": "Thanks for your feedback!"
+  },
+  "rewards": {
+    "unlockPrompt": "Complete your check-in to unlock",
+    "allClaimed": "All claimed",
+    "earned": "Earned",
+    "unlocked": "Unlocked",
+    "noRewards": "No rewards available this week — check back soon!"
+  },
+  "history": {
+    "title": "Check-In History",
+    "empty": "No check-ins yet — your first one arrives Sunday!",
+    "confirmed": "Confirmed",
+    "responded": "Responded",
+    "pending": "Pending"
+  },
+  "auth": {
+    "signInTitle": "RideShift RVA",
+    "signInSubtitle": "Sign in with your email",
+    "goalConfirmed": "Goal confirmed! Sign in to claim your rewards.",
+    "sendMagicLink": "Send Magic Link",
+    "sending": "Sending...",
+    "checkEmail": "Check Your Email",
+    "magicLinkSent": "We sent you a magic link. Click it to sign in.",
+    "checkSpam": "If you don't see it, check your spam folder."
+  },
+  "info": {
+    "title": "Richmond Transit Resources",
+    "subtitle": "Everything you need to get around Richmond without a car.",
+    "publicTransit": "Public Transit",
+    "biking": "Biking",
+    "scooters": "Scooters",
+    "carpooling": "Carpooling & Rideshare",
+    "walking": "Walking & Safety",
+    "grtc": {
+      "name": "GRTC Transit System",
+      "description": "Richmond's public transit provider — routes, schedules, and fare info for buses and the Pulse BRT."
+    },
+    "grtcMaps": {
+      "name": "GRTC Maps & Schedules",
+      "description": "Route maps, timetables, and system overview."
+    },
+    "transitApp": {
+      "name": "Transit App (GRTC recommended)",
+      "description": "GRTC's recommended app for real-time bus tracking, trip planning, and arrival times."
+    },
+    "bikeMap": {
+      "name": "RVA Bike Infrastructure Map",
+      "description": "City GIS map of completed bike lanes, shared-use paths, and bicycle infrastructure."
+    },
+    "bikeWalk": {
+      "name": "Bike Walk RVA (Sports Backers)",
+      "description": "Bikeways guide with recommended routes and trail connections across Richmond."
+    },
+    "pedBikeTrails": {
+      "name": "Pedestrian, Bicycling & Trails",
+      "description": "City of Richmond's official page for bike and pedestrian infrastructure projects."
+    },
+    "escooter": {
+      "name": "Richmond E-Scooter Program",
+      "description": "City info on e-scooter operators (Bird, Spin), equity zones with discounted rides, and rules of the road."
+    },
+    "ridefinders": {
+      "name": "RideFinders",
+      "description": "Free carpool and vanpool matching for Richmond-area commuters. A division of GRTC."
+    },
+    "connectingVA": {
+      "name": "ConnectingVA Rideshare",
+      "description": "Virginia DRPT's statewide rideshare program — log commutes, find matches, earn rewards."
+    },
+    "virginiaPaths": {
+      "name": "Virginia PATHS",
+      "description": "Pedestrian safety and active transportation advocacy across Virginia, including Richmond road safety assessments."
+    }
+  },
+  "plans": {
+    "title": "Richmond Transportation Plans",
+    "subtitle": "Richmond is shifting transportation with the following efforts:",
+    "feedbackTitle": "Got an idea to make it better?",
+    "feedbackDescription": "Submit a comment to the Richmond Connects team:",
+    "feedbackButton": "Share Your Feedback",
+    "richmondConnects": {
+      "name": "Richmond Connects Project Tracker",
+      "description": "Interactive map tracking Richmond's active transportation infrastructure projects."
+    },
+    "visionZero": {
+      "name": "Vision Zero Plan: Safer Roads for All Modes",
+      "description": "The City of Richmond's action plan to eliminate traffic fatalities and serious injuries."
+    },
+    "bicycleMaster": {
+      "name": "Bicycle Master Plan",
+      "description": "Richmond's comprehensive plan for expanding and improving bicycle infrastructure citywide."
+    }
+  }
+}

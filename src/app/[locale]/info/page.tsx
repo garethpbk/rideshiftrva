@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Card, CardContent } from "@heroui/react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Richmond Transit Resources",
@@ -7,104 +8,94 @@ export const metadata: Metadata = {
 
 const RESOURCES = [
   {
-    category: "Public Transit",
+    categoryKey: "publicTransit" as const,
     items: [
       {
-        name: "GRTC Transit System",
+        key: "grtc" as const,
         url: "https://www.ridegrtc.com",
-        description:
-          "Richmond's public transit provider — routes, schedules, and fare info for buses and the Pulse BRT.",
       },
       {
-        name: "GRTC Maps & Schedules",
+        key: "grtcMaps" as const,
         url: "https://www.ridegrtc.com/maps-and-schedules/",
-        description: "Route maps, timetables, and system overview.",
       },
       {
-        name: "Transit App (GRTC recommended)",
+        key: "transitApp" as const,
         url: "https://www.ridegrtc.com/rider-guide/mobile-apps/",
-        description:
-          "GRTC's recommended app for real-time bus tracking, trip planning, and arrival times.",
       },
     ],
   },
   {
-    category: "Biking",
+    categoryKey: "biking" as const,
     items: [
       {
-        name: "RVA Bike Infrastructure Map",
+        key: "bikeMap" as const,
         url: "https://richmond-geo-hub-cor.hub.arcgis.com/datasets/bicycle-infrastructure-completed/about",
-        description:
-          "City GIS map of completed bike lanes, shared-use paths, and bicycle infrastructure.",
       },
       {
-        name: "Bike Walk RVA (Sports Backers)",
+        key: "bikeWalk" as const,
         url: "https://www.sportsbackers.org/program/bike-walk-rva/rva-bikeways-guide/",
-        description:
-          "Bikeways guide with recommended routes and trail connections across Richmond.",
       },
       {
-        name: "Pedestrian, Bicycling & Trails",
+        key: "pedBikeTrails" as const,
         url: "https://www.rva.gov/public-works/pedestrian-bicycling-and-trails",
-        description:
-          "City of Richmond's official page for bike and pedestrian infrastructure projects.",
       },
     ],
   },
   {
-    category: "Scooters",
+    categoryKey: "scooters" as const,
     items: [
       {
-        name: "Richmond E-Scooter Program",
+        key: "escooter" as const,
         url: "https://www.rva.gov/public-works/e-scooter-program",
-        description:
-          "City info on e-scooter operators (Bird, Spin), equity zones with discounted rides, and rules of the road.",
       },
     ],
   },
   {
-    category: "Carpooling & Rideshare",
+    categoryKey: "carpooling" as const,
     items: [
       {
-        name: "RideFinders",
+        key: "ridefinders" as const,
         url: "https://www.ridefinders.com/",
-        description:
-          "Free carpool and vanpool matching for Richmond-area commuters. A division of GRTC.",
       },
       {
-        name: "ConnectingVA Rideshare",
+        key: "connectingVA" as const,
         url: "https://connectingva.drpt.virginia.gov/rideshare/",
-        description:
-          "Virginia DRPT's statewide rideshare program — log commutes, find matches, earn rewards.",
       },
     ],
   },
   {
-    category: "Walking & Safety",
+    categoryKey: "walking" as const,
     items: [
       {
-        name: "Virginia PATHS",
+        key: "virginiaPaths" as const,
         url: "https://virginiapaths.org/",
-        description:
-          "Pedestrian safety and active transportation advocacy across Virginia, including Richmond road safety assessments.",
       },
     ],
   },
 ];
 
-export default function InfoPage() {
+export default async function InfoPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("info");
+
   return (
     <div className="mx-auto max-w-3xl p-4 py-8">
-      <h1 className="text-3xl font-bold">Richmond Transit Resources</h1>
+      <h1 className="text-3xl font-bold">{t("title")}</h1>
       <p className="mt-2 text-zinc-600">
-        Everything you need to get around Richmond without a car.
+        {t("subtitle")}
       </p>
 
       <div className="mt-8 flex flex-col gap-8">
         {RESOURCES.map((section) => (
-          <div key={section.category}>
+          <div key={section.categoryKey}>
             <h2 className="text-xl font-bold text-green-600">
-              {section.category}
+              {t(section.categoryKey)}
             </h2>
             <div className="mt-3 flex flex-col gap-3">
               {section.items.map((item) => (
@@ -116,10 +107,10 @@ export default function InfoPage() {
                       rel="noopener noreferrer"
                       className="text-lg font-semibold text-green-700 underline decoration-green-300 underline-offset-2 hover:decoration-green-600"
                     >
-                      {item.name}
+                      {t(`${item.key}.name`)}
                     </a>
                     <p className="mt-1 text-sm text-zinc-600">
-                      {item.description}
+                      {t(`${item.key}.description`)}
                     </p>
                   </CardContent>
                 </Card>

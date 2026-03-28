@@ -114,6 +114,56 @@ src/
     └── next-auth.d.ts              # Session type extensions
 ```
 
+## Reward management
+
+Rewards are managed through the platform's database layer. Each reward includes a title, description, business name, coupon code, validity dates, and optional redemption limits. The current rewards are configured via the seed data and can be browsed and edited with `npx prisma studio`. An admin dashboard for self-service reward management by business partners is planned.
+
+## Launch partners
+
+RideShift launches with confirmed local business partners:
+
+- **West Broad Studios** — recording studio offering discounted sessions
+- **Rushing Blooms** — florist offering purchase discounts
+- **Moulton Hot Natives** — hot sauce maker offering purchase discounts
+
+Additional businesses can be onboarded by adding reward records via Prisma Studio or the seed file.
+
+## No city involvement required
+
+RideShift operates independently. It requires no city systems integration, no city budget, and no city staff time. The platform connects residents directly with local businesses — the City of Richmond benefits from reduced VMT and emissions without any operational burden.
+
+## Trust-based design
+
+RideShift uses a trust-based honor system rather than GPS tracking, photo verification, or transit card integration. This is a deliberate design decision:
+
+- **Lower barriers**: No app permissions, no location sharing, no special hardware
+- **Broader access**: Works for users without smartphones, with limited data plans, or with privacy concerns
+- **Civic trust**: Richmond trusts its residents — invasive verification creates friction that disproportionately excludes the communities transit programs aim to serve
+- **Higher participation**: The dramatically higher participation rate from frictionless check-ins outweighs any marginal gaming of the system
+
+The weekly email check-in (confirm with one click) keeps the commitment lightweight and sustainable.
+
+## Check-in preview mode
+
+The `/checkin/preview` route provides a development and demo tool for previewing the check-in confirmation experience without a real check-in token:
+
+- `?response=yes` — preview the success confirmation page
+- `?response=no` — preview the "not this week" page with feedback form
+
+This exists for rapid UI iteration during development and for demo presentations where you want to show the check-in flow without triggering real emails or database writes.
+
+## Accessibility
+
+RideShift has been audited for accessibility:
+
+- Skip-to-content link for keyboard navigation
+- Explicit form labels on all inputs (including screen-reader-only labels for visual controls)
+- ARIA labels on navigation and interactive elements
+- `aria-live` regions for dynamic content updates (feedback submission, form states)
+- Status indicators use text labels alongside color (not color-only)
+- Semantic heading hierarchy across all pages
+- Responsive design tested for mobile viewports
+
 ## Useful commands
 
 | Task | Command |

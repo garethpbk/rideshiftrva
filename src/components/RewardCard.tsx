@@ -1,4 +1,7 @@
+"use client";
+
 import { Card, CardContent, CardFooter, Chip } from "@heroui/react";
+import { useTranslations } from "next-intl";
 
 interface RewardCardProps {
   reward: {
@@ -17,6 +20,8 @@ interface RewardCardProps {
 }
 
 export function RewardCard({ reward, confirmed, redeemed, allClaimed }: RewardCardProps) {
+  const t = useTranslations("rewards");
+
   return (
     <Card className="w-full">
       <CardContent className="flex flex-row gap-4">
@@ -38,21 +43,21 @@ export function RewardCard({ reward, confirmed, redeemed, allClaimed }: RewardCa
       </CardContent>
       <CardFooter className="pt-0">
         {!confirmed && (
-          <p className="text-sm text-zinc-400">Complete your check-in to unlock</p>
+          <p className="text-sm text-zinc-400">{t("unlockPrompt")}</p>
         )}
         {confirmed && allClaimed && !redeemed && (
-          <Chip className="bg-zinc-100 text-zinc-600">All claimed</Chip>
+          <Chip className="bg-zinc-100 text-zinc-600">{t("allClaimed")}</Chip>
         )}
         {confirmed && (redeemed || !allClaimed) && reward.couponCode && (
           <div className="flex items-center gap-2">
-            <Chip className="bg-green-100 text-green-700">Earned</Chip>
+            <Chip className="bg-green-100 text-green-700">{t("earned")}</Chip>
             <code className="rounded bg-zinc-100 px-2 py-1 text-sm font-mono">
               {reward.couponCode}
             </code>
           </div>
         )}
         {confirmed && !redeemed && !allClaimed && !reward.couponCode && (
-          <Chip className="bg-green-100 text-green-700">Unlocked</Chip>
+          <Chip className="bg-green-100 text-green-700">{t("unlocked")}</Chip>
         )}
       </CardFooter>
     </Card>
