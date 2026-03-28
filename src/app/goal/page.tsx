@@ -1,7 +1,12 @@
+import type { Metadata } from "next";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { GoalForm } from "@/components/GoalForm";
+
+export const metadata: Metadata = {
+  title: "Set Your Goal",
+};
 
 export default async function GoalPage() {
   const session = await auth();
