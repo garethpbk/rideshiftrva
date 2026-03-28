@@ -7,17 +7,8 @@ const intlMiddleware = createMiddleware(routing);
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip middleware for API routes, Next.js internals, and metadata routes
-  if (
-    pathname.startsWith("/api/") ||
-    pathname.startsWith("/_next/") ||
-    pathname.startsWith("/icon") ||
-    pathname.startsWith("/apple-icon") ||
-    pathname.startsWith("/opengraph-image") ||
-    pathname === "/sitemap.xml" ||
-    pathname === "/robots.txt" ||
-    pathname === "/manifest.webmanifest"
-  ) {
+  // Skip middleware for API routes and Next.js internals
+  if (pathname.startsWith("/api/") || pathname.startsWith("/_next/")) {
     return;
   }
 
