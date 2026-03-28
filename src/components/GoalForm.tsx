@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardHeader, CardContent, RadioGroup, Radio, Button } from "@heroui/react";
+import { Card, CardHeader, CardContent, Button } from "@heroui/react";
 import { upsertGoal, clearGoal } from "@/lib/actions/goal";
 import { useState } from "react";
 
@@ -29,16 +29,31 @@ export function GoalForm({ existingGoal }: GoalFormProps) {
       </CardHeader>
       <CardContent>
         <form action={upsertGoal} className="flex flex-col gap-6">
-          <RadioGroup value={mode} onChange={(v) => setMode(v as string)} name="mode">
-            <div className="flex gap-4">
+          <fieldset>
+            <legend className="text-sm font-medium mb-2">Commute mode</legend>
+            <div className="flex gap-2">
               {MODES.map((m) => (
-                <label key={m.value} className="flex items-center gap-2 cursor-pointer">
-                  <Radio value={m.value} />
-                  <span>{m.label}</span>
+                <label
+                  key={m.value}
+                  className={`flex-1 cursor-pointer rounded-lg border-2 px-4 py-3 text-center transition-colors ${
+                    mode === m.value
+                      ? "border-green-600 bg-green-50 text-green-700 font-semibold"
+                      : "border-zinc-200 hover:border-zinc-300"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="mode"
+                    value={m.value}
+                    checked={mode === m.value}
+                    onChange={() => setMode(m.value)}
+                    className="sr-only"
+                  />
+                  {m.label}
                 </label>
               ))}
             </div>
-          </RadioGroup>
+          </fieldset>
 
           <div>
             <label className="block text-sm font-medium mb-2">
